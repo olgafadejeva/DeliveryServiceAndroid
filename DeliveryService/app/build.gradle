@@ -29,4 +29,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'javax.inject:javax.inject:1'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.3.1'
+
 }
