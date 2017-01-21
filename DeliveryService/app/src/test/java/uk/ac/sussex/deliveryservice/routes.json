@@ -1,0 +1,182 @@
+[
+  {
+    "ID":5,
+    "DeliverBy":"2016-11-19T00:00:00",
+    "DeliveryDate":"2016-11-18T00:00:00",
+    "OverallDistance":888.65,
+    "OverallTimeRequired":10.31,
+    "Deliveries":[
+      {
+        "StatusString":"New",
+        "ID":5,
+        "ClientID":3,
+        "DeliveryStatusID":5,
+        "RouteID":5,
+        "ItemSize":0,
+        "DeliverBy":"2016-11-30T00:00:00",
+        "ItemWeight":4.0,
+        "DeliveryStatus":{
+          "ID":5,
+          "Status":0,
+          "ReasonFailed":null,
+          "DeliveredDate":null
+        },
+        "Client":{
+          "ID":3,
+          "FirstName":"Amex",
+          "LastName":"Stadium",
+          "Email":"amex@amex.com",
+          "Address":{
+            "ClientId":3,
+            "ID":7,
+            "LineOne":"Village Way",
+            "LineTwo":null,
+            "City":"Brighton",
+            "PostCode":"BN1 9BL",
+            "Lat":50.8607055,
+            "Lng":-0.0812815
+          }
+        }
+      }
+    ],
+    "PickUpAddress":{
+      "ID":3,
+      "LineOne":"75 Newmarket Road",
+      "LineTwo":null,
+      "City":"Brighton",
+      "PostCode":"BN2 3QF",
+      "Lat":50.8372843,
+      "Lng":-0.121588
+    },
+    "RouteStatusString":"Completed",
+    "Vehicle":{
+      "ID":1,
+      "VehicleName":"Volkswagen",
+      "RegistrationNumber":"12457856",
+      "Height":122.0,
+      "Width":79.0,
+      "Length":14.0,
+      "MaxLoad":200.0
+    }
+  },
+  {
+    "ID":6,
+    "DeliverBy":"2016-11-29T00:00:00",
+    "DeliveryDate":"2016-11-28T00:00:00",
+    "OverallDistance":881.36,
+    "OverallTimeRequired":9.76,
+    "Deliveries":[
+      {
+        "StatusString":"New",
+        "ID":2,
+        "ClientID":2,
+        "DeliveryStatusID":2,
+        "RouteID":6,
+        "ItemSize":0,
+        "DeliverBy":"2016-11-20T00:00:00",
+        "ItemWeight":0.0,
+        "DeliveryStatus":{
+          "ID":2,
+          "Status":0,
+          "ReasonFailed":"client not present",
+          "DeliveredDate":"2016-12-02T15:31:53.3260657"
+        },
+        "Client":{
+          "ID":2,
+          "FirstName":"Brighon",
+          "LastName":"Station",
+          "Email":"station@gmai.com",
+          "Address":{
+            "ClientId":2,
+            "ID":4,
+            "LineOne":"Queens Rd",
+            "LineTwo":null,
+            "City":"Brighton",
+            "PostCode":"BN1 3XP",
+            "Lat":50.829,
+            "Lng":-0.14125
+          }
+        }
+      }
+    ],
+    "PickUpAddress":{
+      "ID":11,
+      "LineOne":"Bristol Airport",
+      "LineTwo":null,
+      "City":"Bristol",
+      "PostCode":"BS48 3DY",
+      "Lat":51.3859,
+      "Lng":-2.7135463
+    },
+    "RouteStatusString":"Completed",
+    "Vehicle":{
+      "ID":1,
+      "VehicleName":"Volkswagen",
+      "RegistrationNumber":"12457856",
+      "Height":122.0,
+      "Width":79.0,
+      "Length":14.0,
+      "MaxLoad":200.0
+    }
+  },
+  {
+    "ID":7,
+    "DeliverBy":"2016-11-30T00:00:00",
+    "DeliveryDate":"2016-11-29T00:00:00",
+    "OverallDistance":21.63,
+    "OverallTimeRequired":0.95,
+    "Deliveries":[
+      {
+        "StatusString":"Picked up",
+        "ID":3,
+        "ClientID":1,
+        "DeliveryStatusID":3,
+        "RouteID":7,
+        "ItemSize":0,
+        "DeliverBy":"2016-12-02T00:00:00",
+        "ItemWeight":0.0,
+        "DeliveryStatus":{
+          "ID":3,
+          "Status":1,
+          "ReasonFailed":null,
+          "DeliveredDate":null
+        },
+        "Client":{
+          "ID":1,
+          "FirstName":"Boots",
+          "LastName":"Coppergate",
+          "Email":"boots@coots.com",
+          "Address":{
+            "ClientId":1,
+            "ID":1,
+            "LineOne":"12 Coppergate Street",
+            "LineTwo":null,
+            "City":"York",
+            "PostCode":"YO1 9NT",
+            "Lat":53.9576494,
+            "Lng":-1.080128
+          }
+        }
+      }
+    ],
+    "PickUpAddress":{
+      "ID":3,
+      "LineOne":"75 Newmarket Road",
+      "LineTwo":null,
+      "City":"Brighton",
+      "PostCode":"BN2 3QF",
+      "Lat":50.8372843,
+      "Lng":-0.121588
+    },
+    "RouteStatusString":"In progress",
+    "Vehicle":{
+      "ID":1,
+      "VehicleName":"Volkswagen",
+      "RegistrationNumber":"12457856",
+      "Height":122.0,
+      "Width":79.0,
+      "Length":14.0,
+      "MaxLoad":200.0
+    }
+  }
+]

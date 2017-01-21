@@ -41,9 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         String[] params = new String[] {username.getText().toString(), password.getText().toString()};
         String result = task.execute(params).get();
 
-        if (result.equals("Ok")) {
-            Intent intent = new Intent(this, MainMenuActivity.class);
+        if (!result.equals("") || !result.equals("Fail")) {
+            Intent intent = new Intent(this, RoutesActivity.class);
+
+            Bundle b = new Bundle();
+            b.putString("key", result);
+            intent.putExtras(b); //Put your id to your next Intent
             startActivity(intent);
+            finish();
         }
     }
 
@@ -54,13 +59,13 @@ public class LoginActivity extends AppCompatActivity {
     }
     private class LoginTask extends AsyncTask<String, Void, String> {
 
-        private static final String LOGIN_URL = "http://192.168.1.7:44302/androidapi/login";
+        private static final String LOGIN_URL = "http://192.168.1.7:44302/connect/token";
         public  final MediaType JSON
-                = MediaType.parse("application/json; charset=utf-8");
+                = MediaType.parse("application/x-www-form-urlencoded");
         @Override
         protected String doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(20, TimeUnit.SECONDS)
+                    .connectTimeout(1000, TimeUnit.SECONDS)
                     .build();
 
             JSONObject json = new JSONObject();
@@ -70,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            RequestBody body = RequestBody.create(JSON, json.toString());
+            RequestBody body = RequestBody.create(JSON, "grant_type=password&username=rebecca@gmail.com&password=aaa123&scope=openid+email+name+profile+roles");
             Request request =
                     new Request.Builder()
                             .url(LOGIN_URL)
@@ -82,7 +87,17 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
-                    return "Ok";
+
+                    JSONObject result = null;
+                    String token ="";
+                    try {
+                        result = new JSONObject(response.body().string());
+                        token = result.getString("access_token");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(result);
+                    return token;
                 } else {
                     return "Fail";
                 }
