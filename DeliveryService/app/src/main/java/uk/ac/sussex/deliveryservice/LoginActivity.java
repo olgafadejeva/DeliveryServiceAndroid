@@ -48,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
             b.putString("key", result);
             intent.putExtras(b); //Put your id to your next Intent
             startActivity(intent);
-            finish();
         }
     }
 

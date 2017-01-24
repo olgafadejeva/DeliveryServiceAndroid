@@ -34,4 +34,11 @@ public class MainMenuActivity extends ListActivity {
         Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // The activity has become visible (it is now "resumed").
+    }
+
+
 }
