@@ -1,15 +1,18 @@
 package uk.ac.sussex.deliveryservice.model;
 
 
-public class Client {
+import java.io.Serializable;
 
-    public String FirstName;
+@SuppressWarnings("serial")
+public class Client implements Serializable {
 
-    public String LastName;
+    private String FirstName;
 
-    public String Email;
+    private String LastName;
 
-    public Address Address;
+    private String Email;
+
+    private Address Address;
 
     public String getFirstName() {
         return FirstName;
@@ -35,11 +38,11 @@ public class Client {
         Email = email;
     }
 
-    public uk.ac.sussex.deliveryservice.model.Address getAddress() {
+    public Address getAddress() {
         return Address;
     }
 
-    public void setAddress(uk.ac.sussex.deliveryservice.model.Address address) {
+    public void setAddress(Address address) {
         Address = address;
     }
 }

@@ -1,8 +1,11 @@
 package uk.ac.sussex.deliveryservice.model;
 
 
+import java.io.Serializable;
 import java.util.Date;
-public class Delivery {
+
+@SuppressWarnings("serial")
+public class Delivery implements Serializable{
     public int ID;
 
     public int ClientID;

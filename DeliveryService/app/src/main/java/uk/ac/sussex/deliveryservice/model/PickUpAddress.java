@@ -1,6 +1,8 @@
 package uk.ac.sussex.deliveryservice.model;
 
 
+import java.io.Serializable;
 
-public class PickUpAddress extends Address {
+@SuppressWarnings("serial")
+public class PickUpAddress extends Address implements Serializable {
 }

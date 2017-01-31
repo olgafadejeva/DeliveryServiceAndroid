@@ -1,0 +1,195 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/deliveries_status_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery status: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/delivery_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/deliver_by_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deliver by date: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/deliver_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5 Dec 2017"
+            android:textColor="@android:color/black" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item properties"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_size_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item size: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/item_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5x5x10"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_weight_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item weight: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/item_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10kg"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Client details"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/client_name_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Client: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/client_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adam Smith"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/client_address_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery address: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/client_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blah blah"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+            <Button
+                android:id="@+id/status_update_picked_up_button"
+                android:layout_width="0dp"
+                android:minHeight="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Picked up" />
+
+            <Button
+                android:id="@+id/status_update_in_transit_button"
+                android:layout_width="0dp"
+                android:minHeight="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_toRightOf="@+id/status_update_picked_up_button"
+                android:text="In transit" />
+
+            <Button
+                android:id="@+id/status_update_delivered_button"
+                android:layout_width="0dp"
+                android:minHeight="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorAccentSuccess"
+                android:text="Delivered" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/map_view_button"
+                android:layout_width="0dp"
+                android:minHeight="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="2"
+                android:text="Map view" />
+
+            <Button
+                android:id="@+id/failed_delivery_button"
+                android:layout_width="0dp"
+                android:minHeight="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:textColor="@color/colorAccentFailed"
+                android:text="Failed delivery" />
+    </LinearLayout>
+
+</LinearLayout>
+

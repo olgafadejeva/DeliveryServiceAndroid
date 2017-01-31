@@ -1,26 +1,28 @@
 package uk.ac.sussex.deliveryservice.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Route {
-    public int ID;
+@SuppressWarnings("serial")
+public class Route implements Serializable{
+    private int ID;
 
-    public Date DeliverBy;
+    private Date DeliverBy;
 
-    public Date  DeliveryDate;
+    private Date  DeliveryDate;
 
-    public double OverallDistance;
+    private double OverallDistance;
 
-    public String RouteStatusString;
+    private String RouteStatusString;
 
-    public double OverallTimeRequired;
+    private double OverallTimeRequired;
 
-    public List<Delivery> Deliveries;
+    private List<Delivery> Deliveries;
 
-    public PickUpAddress PickUpAddress;
+    private PickUpAddress PickUpAddress;
 
-    public Vehicle Vehicle;
+    private Vehicle Vehicle;
 
     public int getID() {
         return ID;

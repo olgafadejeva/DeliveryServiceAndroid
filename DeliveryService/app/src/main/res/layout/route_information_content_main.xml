@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+tools:context=".RouteInformationActivity"
+app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    <Button
+        android:text="See deliveries"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="seeDeliveries"
+        android:id="@+id/see_deliveries_button" />
+
+    <Button
+        android:text="Map view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/map_view_button"
+        android:onClick="mapView"/>
+    </LinearLayout>
+
+</RelativeLayout>

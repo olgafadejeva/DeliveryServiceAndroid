@@ -1,8 +1,10 @@
 package uk.ac.sussex.deliveryservice.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DeliveryStatus {
+@SuppressWarnings("serial")
+public class DeliveryStatus implements Serializable{
     public int ID;
 
     public int Status;

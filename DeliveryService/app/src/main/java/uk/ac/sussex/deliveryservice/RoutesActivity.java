@@ -24,6 +24,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -76,7 +78,7 @@ public class RoutesActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(RoutesActivity.this, RouteInformationActivity.class);
                 Bundle b = new Bundle();
-                b.putString("key", "s");
+                b.putSerializable("route", dataModel);
                 intent.putExtras(b);
                 startActivity(intent);
 
@@ -298,11 +300,17 @@ public class RoutesActivity extends AppCompatActivity {
         Gson gSon=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         List<Route> routes = gSon.fromJson(json,  new TypeToken<ArrayList<Route>>() {}.getType());
         ArrayList<RouteViewModel> models = new ArrayList<>();
+        Format formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (Route route : routes) {
             RouteViewModel model = new RouteViewModel();
-            model.setDeliveryDate(route.getDeliveryDate().toString());
+            model.setDeliveryDate(formatter.format(route.getDeliveryDate()));
+            model.setID(route.getID());
             model.setStatus(route.getRouteStatusString());
             model.setDeliveries((ArrayList< Delivery>) route.getDeliveries());
+            model.setDeliverByDate(formatter.format(route.getDeliverBy()));
+            model.setOverallDistance(route.getOverallDistance());
+            model.setOverallTime(route.getOverallTimeRequired());
+            model.setPickUpAddress(route.getPickUpAddress());
             models.add(model);
         }
         return models;

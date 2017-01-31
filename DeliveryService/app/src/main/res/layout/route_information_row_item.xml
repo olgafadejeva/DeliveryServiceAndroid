@@ -1,0 +1,146 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/route_status_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Route status: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/route_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/deliver_by_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deliver by date: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/deliver_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5 Dec 2017"
+            android:textColor="@android:color/black" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/delivery_date_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deliver by date: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/delivery_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 Dec 2017"
+            android:textColor="@android:color/black" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/overall_distance_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Overall distance: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/overall_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100km"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/overall_time_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Overall time required: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/overall_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4h"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/depot_address_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Depot address: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/depot_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address here"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/deliveries_number_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of deliveries: "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/deliveries_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+</LinearLayout>
+

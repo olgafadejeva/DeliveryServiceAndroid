@@ -1,7 +1,10 @@
 package uk.ac.sussex.deliveryservice.model;
 
 
-public class Address {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Address implements Serializable {
 
     public String LineOne;
 

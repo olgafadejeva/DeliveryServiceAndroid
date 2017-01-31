@@ -1,7 +1,10 @@
 package uk.ac.sussex.deliveryservice.model;
 
 
-public class Vehicle {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Vehicle implements Serializable {
 
     public String VehicleName;
 

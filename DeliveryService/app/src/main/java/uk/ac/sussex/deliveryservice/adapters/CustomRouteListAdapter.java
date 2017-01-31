@@ -1,8 +1,6 @@
 package uk.ac.sussex.deliveryservice.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +13,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import uk.ac.sussex.deliveryservice.R;
-import uk.ac.sussex.deliveryservice.RoutesActivity;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 
 
 public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> implements View.OnClickListener {
-
 
     private ArrayList<RouteViewModel> dataSet;
     Context mContext;
@@ -32,7 +28,7 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
     }
 
     public CustomRouteListAdapter(ArrayList<RouteViewModel> data, Context context) {
-        super(context, R.layout.row_item, data);
+        super(context, R.layout.route_row_item, data);
         this.dataSet = data;
         this.mContext = context;
 
@@ -70,7 +66,7 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.row_item, parent, false);
+            convertView = inflater.inflate(R.layout.route_row_item, parent, false);
             viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
             viewHolder.txtType = (TextView) convertView.findViewById(R.id.type);
             viewHolder.txtVersion = (TextView) convertView.findViewById(R.id.deliveries_number);
