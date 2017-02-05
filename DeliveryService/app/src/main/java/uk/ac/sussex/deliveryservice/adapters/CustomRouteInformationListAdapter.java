@@ -33,6 +33,7 @@ public class CustomRouteInformationListAdapter extends ArrayAdapter<RouteViewMod
         TextView overallTimeRequiredField;
         TextView depotAddressField;
         TextView deliveriesNumberField;
+        TextView vehicleField;
     }
 
     public CustomRouteInformationListAdapter(ArrayList<RouteViewModel> data, Context context) {
@@ -82,6 +83,7 @@ public class CustomRouteInformationListAdapter extends ArrayAdapter<RouteViewMod
             viewHolder.overallTimeRequiredField = (TextView) convertView.findViewById(R.id.overall_time);
             viewHolder.depotAddressField = (TextView) convertView.findViewById(R.id.depot_address);
             viewHolder.deliveriesNumberField = (TextView) convertView.findViewById(R.id.deliveries_number);
+            viewHolder.vehicleField = (TextView) convertView.findViewById(R.id.vehicle);
 
             result = convertView;
 
@@ -96,16 +98,18 @@ public class CustomRouteInformationListAdapter extends ArrayAdapter<RouteViewMod
         lastPosition = position;
 
         PickUpAddress address = dataModel.getPickUpAddress();
-        String addressString = address.getLineOne() + "\n" + address.getLineTwo() + "\n" + address.getCity() + "\n" + address.getPostCode();
-
+        String lineTwoOfAddress = address.getLineTwo() == null ? "\n" : "\n" + address.getLineTwo() + "\n";
+        String pickUpAddressString = address.getLineOne() + lineTwoOfAddress + address.getCity() + "\n" + address.getPostCode();
+        String vehicleString = dataModel.getVehicle().getVehicleName() + ", " + dataModel.getVehicle().getRegistrationNumber();
 
         viewHolder.statusField.setText(dataModel.getStatus());
         viewHolder.deliverByDateField.setText(dataModel.getDeliverByDate());
         viewHolder.deliveryDateField.setText(dataModel.getDeliveryDate());
         viewHolder.overallDistanceField.setText("" + dataModel.getOverallDistance());
         viewHolder.overallTimeRequiredField.setText("" + dataModel.getOverallTime());
-        viewHolder.depotAddressField.setText(addressString);
+        viewHolder.depotAddressField.setText(pickUpAddressString);
         viewHolder.deliveriesNumberField.setText("" + dataModel.getDeliveries().size());
+        viewHolder.vehicleField.setText(vehicleString);
 
         return convertView;
     }

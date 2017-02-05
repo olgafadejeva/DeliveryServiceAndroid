@@ -28,7 +28,12 @@ public class RouteDeliveriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deliveries_content_main);
-        Intent i = getIntent();
+        Intent intent = getIntent();
+        Bundle bundle =intent.getExtras();
+        String token = "";
+        if(bundle != null) {
+            token = bundle.getString("token");
+        }
         //dataModels = (ArrayList<Delivery>) i.getSerializableExtra("dataModels");
 
         String json = "[\n" +
@@ -102,7 +107,9 @@ public class RouteDeliveriesActivity extends AppCompatActivity {
         dataModels = gSon.fromJson(json,  new TypeToken<ArrayList<Delivery>>() {}.getType());
         //display dataModels in a list
 
-        adapter= new CustomDeliveriesListAdapter(dataModels, getApplicationContext());
+        adapter= new CustomDeliveriesListAdapter(dataModels, this);
+        adapter.setToken(token);
+        adapter.setActivity(this);
 
         listView=(ListView)findViewById(R.id.list);
         listView.setAdapter(adapter);

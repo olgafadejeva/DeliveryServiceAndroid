@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DeliveryService</string>
+    <string name="app_name">Delivery Service</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -19,4 +19,9 @@
     <string name="action_settings">Log out</string>
     <string name="title_activity_routes">My Routes</string>
     <string name="title_activity_route_deliveries">Delivery details</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_map_route_boundary">Route map view</string>
+    <string name="title_activity_route_directions">Directions</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_navigation">Navigation</string>
 </resources>

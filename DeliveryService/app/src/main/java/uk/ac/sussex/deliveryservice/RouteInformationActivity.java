@@ -1,6 +1,7 @@
 package uk.ac.sussex.deliveryservice;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 import uk.ac.sussex.deliveryservice.adapters.CustomDeliveriesListAdapter;
 import uk.ac.sussex.deliveryservice.adapters.CustomRouteInformationListAdapter;
+import uk.ac.sussex.deliveryservice.model.Address;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 
 public class RouteInformationActivity extends AppCompatActivity {
@@ -53,7 +55,11 @@ public class RouteInformationActivity extends AppCompatActivity {
 
     public void mapView(View v)
     {
-        Toast.makeText(this, "Clicked on Map view", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(RouteInformationActivity.this, MapRouteBoundaryActivity.class);
+        Bundle b = new Bundle();
+        b.putSerializable("route", dataModel);
+        intent.putExtras(b);
+        startActivity(intent);
     }
 
     @Override
@@ -69,4 +75,11 @@ public class RouteInformationActivity extends AppCompatActivity {
     }
 
 
+    public void startNavigation(View view) {
+        Intent intent = new Intent(RouteInformationActivity.this, NavigationActivity.class);
+        Bundle b = new Bundle();
+        b.putSerializable("route", dataModel);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
 }

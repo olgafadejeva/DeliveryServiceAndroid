@@ -188,7 +188,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:textColor="@color/colorAccentFailed"
-                android:text="Failed delivery" />
+                android:text="Failed delivery"/>
     </LinearLayout>
 
 </LinearLayout>

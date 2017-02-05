@@ -14,7 +14,16 @@ public class RouteViewModel implements Serializable{
     private double overallDistance;
     private double overallTime;
     private PickUpAddress pickUpAddress;
+    private Vehicle vehicle;
 
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
     public PickUpAddress getPickUpAddress() {
         return pickUpAddress;
     }
