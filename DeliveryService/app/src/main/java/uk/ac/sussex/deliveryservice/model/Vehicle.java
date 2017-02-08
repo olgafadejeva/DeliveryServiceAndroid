@@ -10,6 +10,11 @@ public class Vehicle implements Serializable {
 
     public String RegistrationNumber;
 
+    public Vehicle(String vehicleName, String registrationNumber) {
+        VehicleName = vehicleName;
+        RegistrationNumber = registrationNumber;
+    }
+
     public String getVehicleName() {
         return VehicleName;
     }

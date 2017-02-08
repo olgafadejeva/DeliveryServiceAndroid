@@ -13,7 +13,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_main_menu">Action Menu</string>
     <string name="title_activity_route_info">Route information</string>
 
     <string name="action_settings">Log out</string>
@@ -24,4 +24,5 @@
     <string name="title_activity_route_directions">Directions</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_navigation">Navigation</string>
+    <string name="title_vehicles_activity">My vehicles</string>
 </resources>

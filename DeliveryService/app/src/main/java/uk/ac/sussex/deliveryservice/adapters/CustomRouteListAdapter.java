@@ -20,6 +20,7 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
 
     private ArrayList<RouteViewModel> dataSet;
     Context mContext;
+    private int lastPosition = -1;
 
     private static class ViewHolder {
         TextView txtName;
@@ -51,7 +52,6 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
         }
     }
 
-    private int lastPosition = -1;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
