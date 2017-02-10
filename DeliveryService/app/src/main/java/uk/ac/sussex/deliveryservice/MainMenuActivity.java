@@ -43,9 +43,6 @@ public class MainMenuActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainMenuActivity.this, DriverDetailsActivity.class);
                     startActivity(intent);
                 }
-
-
-
             }
         });
     }

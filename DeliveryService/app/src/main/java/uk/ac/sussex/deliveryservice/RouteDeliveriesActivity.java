@@ -119,9 +119,6 @@ public class RouteDeliveriesActivity extends AppCompatActivity {
 
                 Delivery dataModel= dataModels.get(position);
 
-                Snackbar.make(view, "clicked on the delivery", Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-
                 Intent intent = new Intent(RouteDeliveriesActivity.this, RouteInformationActivity.class);
                 Bundle b = new Bundle();
                 b.putSerializable("route", dataModel);

@@ -1,6 +1,5 @@
 package uk.ac.sussex.deliveryservice;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,23 +22,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import uk.ac.sussex.deliveryservice.model.DrivingInstruction;
-import uk.ac.sussex.deliveryservice.model.Route;
 
 public class RouteDirectionsActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+    private DirectionsPageAdapter mDirectionsPageAdapter;
     private ViewPager mViewPager;
     private ArrayList<DrivingInstruction> instructions;
 
@@ -53,17 +39,14 @@ public class RouteDirectionsActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         instructions = (ArrayList<DrivingInstruction>) i.getSerializableExtra("directions");
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+
         Bundle instructionsBundle = new Bundle();
         instructionsBundle.putSerializable("instructions", instructions);
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), instructionsBundle);
+        mDirectionsPageAdapter = new DirectionsPageAdapter(getSupportFragmentManager(), instructionsBundle);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-
+        mViewPager.setAdapter(mDirectionsPageAdapter);
     }
 
     @Override
@@ -77,9 +60,6 @@ public class RouteDirectionsActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class DirectionsFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -136,7 +116,6 @@ public class RouteDirectionsActivity extends AppCompatActivity {
 
                    TextView tv = (TextView) row.findViewById(R.id.direction_item);
                    tv.setText(Html.fromHtml(getItem(position)));
-                   //tv.setText(getItem(position));
 
                    return row;
                }
@@ -145,30 +124,21 @@ public class RouteDirectionsActivity extends AppCompatActivity {
 
            ListView listView = (ListView) rootView.findViewById(R.id.directions_list);
            listView.setAdapter(adapter);
-
-
-
             //textView.setText(instruction.getDirections().get(0));
             return rootView;
         }
     }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class DirectionsPageAdapter extends FragmentPagerAdapter {
 
         private  Bundle data;
-        public SectionsPagerAdapter(FragmentManager fm, Bundle instructions) {
+        public DirectionsPageAdapter(FragmentManager fm, Bundle instructions) {
             super(fm);
             this.data = instructions;
         }
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a DirectionsFragment (defined as a static inner class below).
             Fragment fragment =  DirectionsFragment.newInstance(position, instructions);
             Bundle b = new Bundle();
             ArrayList<DrivingInstruction> instructions = (ArrayList<DrivingInstruction>) data.getSerializable("instructions");
@@ -180,19 +150,6 @@ public class RouteDirectionsActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return instructions.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return "I'll sort this out";
         }
     }
 }
