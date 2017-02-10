@@ -79,13 +79,7 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
         Object object = getItem(position);
         RouteViewModel dataModel = (RouteViewModel) object;
 
-        switch (v.getId()) {
-            case R.id.item_info:
-                Snackbar.make(v, "Delivery date " + dataModel.getDeliveryDate(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
 
-                break;
-        }
     }
 
     private int lastPosition = -1;

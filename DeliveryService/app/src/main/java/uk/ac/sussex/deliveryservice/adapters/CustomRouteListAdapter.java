@@ -1,6 +1,8 @@
 package uk.ac.sussex.deliveryservice.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +10,11 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import uk.ac.sussex.deliveryservice.R;
@@ -23,9 +28,10 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
     private int lastPosition = -1;
 
     private static class ViewHolder {
-        TextView txtName;
-        TextView txtType;
-        TextView txtVersion;
+        TextView status;
+        TextView numberOfDeliveries;
+        TextView deliveryDate;
+        ImageView statusIcon;
     }
 
     public CustomRouteListAdapter(ArrayList<RouteViewModel> data, Context context) {
@@ -43,13 +49,6 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
         Object object = getItem(position);
         RouteViewModel dataModel = (RouteViewModel) object;
 
-        switch (v.getId()) {
-            case R.id.item_info:
-                Snackbar.make(v, "Delivery date " + dataModel.getDeliveryDate(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-
-                break;
-        }
     }
 
 
@@ -67,9 +66,10 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.route_row_item, parent, false);
-            viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
-            viewHolder.txtType = (TextView) convertView.findViewById(R.id.type);
-            viewHolder.txtVersion = (TextView) convertView.findViewById(R.id.deliveries_number);
+            viewHolder.status = (TextView) convertView.findViewById(R.id.status);
+            viewHolder.numberOfDeliveries = (TextView) convertView.findViewById(R.id.deliveries_number);
+            viewHolder.deliveryDate = (TextView) convertView.findViewById(R.id.delivery_date);
+            viewHolder.statusIcon = (ImageView) convertView.findViewById(R.id.status_icon);
 
             result = convertView;
 
@@ -83,9 +83,24 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
         result.startAnimation(animation);
         lastPosition = position;
 
-        viewHolder.txtName.setText(dataModel.getStatus());
-        viewHolder.txtType.setText(dataModel.getDeliveryDate());
-        viewHolder.txtVersion.setText(""+ dataModel.getNumberOfDeliveries());
+        switch(dataModel.getStatus()) {
+            case ("In progress") :
+                viewHolder.statusIcon.setColorFilter(Color.parseColor("#f0ad4e"));
+                break;
+            case ("Completed") :
+                viewHolder.statusIcon.setColorFilter(Color.parseColor("#5cb85c"));
+                break;
+            case ("Pending") :
+                viewHolder.statusIcon.setColorFilter(Color.parseColor("#d9534f"));
+                break;
+            default:
+                viewHolder.statusIcon.setColorFilter(Color.parseColor("#f0ad4e"));
+                break;
+        }
+
+        viewHolder.status.setText(dataModel.getStatus());
+        viewHolder.deliveryDate.setText(dataModel.getDeliveryDate());
+        viewHolder.numberOfDeliveries.setText(""+ dataModel.getNumberOfDeliveries());
         return convertView;
     }
 }

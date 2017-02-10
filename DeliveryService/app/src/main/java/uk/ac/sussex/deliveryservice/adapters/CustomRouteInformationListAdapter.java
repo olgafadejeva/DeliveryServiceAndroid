@@ -2,6 +2,7 @@ package uk.ac.sussex.deliveryservice.adapters;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.Format;
@@ -34,6 +36,7 @@ public class CustomRouteInformationListAdapter extends ArrayAdapter<RouteViewMod
         TextView depotAddressField;
         TextView deliveriesNumberField;
         TextView vehicleField;
+        ImageView statusIcon;
     }
 
     public CustomRouteInformationListAdapter(ArrayList<RouteViewModel> data, Context context) {
@@ -51,13 +54,7 @@ public class CustomRouteInformationListAdapter extends ArrayAdapter<RouteViewMod
         Object object = getItem(position);
         RouteViewModel dataModel = (RouteViewModel) object;
 
-        switch (v.getId()) {
-            case R.id.item_info:
-                Snackbar.make(v, "Delivery date " + dataModel.getDeliveryDate(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
 
-                break;
-        }
     }
 
     private int lastPosition = -1;
@@ -84,6 +81,7 @@ public class CustomRouteInformationListAdapter extends ArrayAdapter<RouteViewMod
             viewHolder.depotAddressField = (TextView) convertView.findViewById(R.id.depot_address);
             viewHolder.deliveriesNumberField = (TextView) convertView.findViewById(R.id.deliveries_number);
             viewHolder.vehicleField = (TextView) convertView.findViewById(R.id.vehicle);
+            viewHolder.statusIcon = (ImageView) convertView.findViewById(R.id.status_icon);
 
             result = convertView;
 
@@ -110,6 +108,21 @@ public class CustomRouteInformationListAdapter extends ArrayAdapter<RouteViewMod
         viewHolder.depotAddressField.setText(pickUpAddressString);
         viewHolder.deliveriesNumberField.setText("" + dataModel.getDeliveries().size());
         viewHolder.vehicleField.setText(vehicleString);
+
+        switch(dataModel.getStatus()) {
+            case ("In progress") :
+                viewHolder.statusIcon.setColorFilter(Color.parseColor("#f0ad4e"));
+                break;
+            case ("Completed") :
+                viewHolder.statusIcon.setColorFilter(Color.parseColor("#5cb85c"));
+                break;
+            case ("Pending") :
+                viewHolder.statusIcon.setColorFilter(Color.parseColor("#d9534f"));
+                break;
+            default:
+                viewHolder.statusIcon.setColorFilter(Color.parseColor("#f0ad4e"));
+                break;
+        }
 
         return convertView;
     }

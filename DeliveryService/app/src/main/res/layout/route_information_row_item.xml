@@ -12,6 +12,8 @@
             android:id="@+id/route_status_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextPadding"
+            android:textStyle="bold"
             android:text="Route status: "
             android:textColor="@android:color/black" />
 
@@ -19,9 +21,16 @@
             android:id="@+id/route_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextPadding"
             android:text="New"
             android:textAppearance="?android:attr/textAppearanceButton"
             android:textColor="@android:color/black" />
+        <ImageView
+            android:id="@+id/status_icon"
+            android:src="@drawable/status_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -31,13 +40,16 @@
         <TextView
             android:id="@+id/deliver_by_string"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
+            style="@style/TextPadding"
             android:text="Deliver by date: "
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/deliver_by"
             android:layout_width="wrap_content"
+            style="@style/TextPadding"
             android:layout_height="wrap_content"
             android:text="5 Dec 2017"
             android:textColor="@android:color/black" />
@@ -53,7 +65,9 @@
             android:id="@+id/delivery_date_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deliver by date: "
+            android:textStyle="bold"
+            style="@style/TextPadding"
+            android:text="Delivery date: "
             android:textColor="@android:color/black" />
 
         <TextView
@@ -61,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4 Dec 2017"
+            style="@style/TextPadding"
             android:textColor="@android:color/black" />
 
 
@@ -72,14 +87,17 @@
 
         <TextView
             android:id="@+id/overall_distance_string"
+            style="@style/TextPadding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Overall distance: "
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/overall_distance"
             android:layout_width="wrap_content"
+            style="@style/TextPadding"
             android:layout_height="wrap_content"
             android:text="100km"
             android:textColor="@android:color/black" />
@@ -92,6 +110,8 @@
         <TextView
             android:id="@+id/overall_time_string"
             android:layout_width="wrap_content"
+            style="@style/TextPadding"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="Overall time required: "
             android:textColor="@android:color/black" />
@@ -100,6 +120,7 @@
             android:id="@+id/overall_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextPadding"
             android:text="4h"
             android:textColor="@android:color/black" />
     </LinearLayout>
@@ -111,6 +132,8 @@
         <TextView
             android:id="@+id/depot_address_string"
             android:layout_width="wrap_content"
+            style="@style/TextPadding"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="Depot address: "
             android:textColor="@android:color/black" />
@@ -118,6 +141,7 @@
         <TextView
             android:id="@+id/depot_address"
             android:layout_width="wrap_content"
+            style="@style/TextPadding"
             android:layout_height="wrap_content"
             android:text="Address here"
             android:textColor="@android:color/black" />
@@ -131,12 +155,15 @@
             android:id="@+id/deliveries_number_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Number of deliveries: "
+            style="@style/TextPadding"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/deliveries_number"
             android:layout_width="wrap_content"
+            style="@style/TextPadding"
             android:layout_height="wrap_content"
             android:text="4"
             android:textColor="@android:color/black" />
@@ -149,6 +176,8 @@
             android:id="@+id/vehicle_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextPadding"
+            android:textStyle="bold"
             android:text="Route vehicle: "
             android:textColor="@android:color/black" />
 
@@ -156,6 +185,7 @@
             android:id="@+id/vehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextPadding"
             android:text="Mazda"
             android:textColor="@android:color/black" />
     </LinearLayout>

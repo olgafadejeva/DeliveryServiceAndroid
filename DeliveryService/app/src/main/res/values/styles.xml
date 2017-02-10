@@ -21,4 +21,8 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextPadding" parent="@android:style/TextAppearance.Medium">
+        <item name="android:padding">8dp</item>
+    </style>
+
 </resources>

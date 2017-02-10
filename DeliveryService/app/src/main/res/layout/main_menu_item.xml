@@ -8,8 +8,15 @@
         android:id="@+id/menu_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TextPadding"
+        android:layout_toRightOf="@+id/menu_icon"
         android:layout_alignParentTop="true"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/black" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/menu_icon"/>
 </RelativeLayout>
