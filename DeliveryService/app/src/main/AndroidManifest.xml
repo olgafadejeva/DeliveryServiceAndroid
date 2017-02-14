@@ -20,11 +20,6 @@
         <activity
             android:name=".MainMenuActivity"
             android:label="@string/title_activity_main_menu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".RoutesActivity"
@@ -35,7 +30,13 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_routes"></activity>
+            android:label="Delivery Service login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".RouteInformationActivity"
             android:label="@string/title_activity_route_info"

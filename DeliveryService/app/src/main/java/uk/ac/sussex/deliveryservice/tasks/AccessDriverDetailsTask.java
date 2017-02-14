@@ -18,9 +18,7 @@ import okhttp3.Response;
 
 public class AccessDriverDetailsTask extends AsyncTask<String, Void, String> {
 
-    private static final String BASE_URL = "http://192.168.1.7:44302/androidApiActions/driverDetails";
-    public  final MediaType JSON
-            = MediaType.parse("application/x-www-form-urlencoded");
+    private static final String BASE_URL = "http://192.168.1.7:44302/api/driver";
     @Override
     protected String doInBackground(String... params) {
         OkHttpClient client = new OkHttpClient.Builder()
@@ -30,6 +28,7 @@ public class AccessDriverDetailsTask extends AsyncTask<String, Void, String> {
         Request request =
                 new Request.Builder()
                         .url(BASE_URL)
+                        .header("Authorization", "Bearer " + params[0])
                         .get()
                         .build();
 
@@ -40,12 +39,12 @@ public class AccessDriverDetailsTask extends AsyncTask<String, Void, String> {
             if (response.isSuccessful()) {
                 return response.body().string();
             } else {
-                return "Fail";
+                return "Error";
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "Fail";
+        return "Error";
     }
 
 }

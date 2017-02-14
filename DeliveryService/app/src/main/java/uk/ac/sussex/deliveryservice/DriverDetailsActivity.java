@@ -2,14 +2,27 @@ package uk.ac.sussex.deliveryservice;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
 import uk.ac.sussex.deliveryservice.model.Address;
 import uk.ac.sussex.deliveryservice.model.DriverDetails;
 import uk.ac.sussex.deliveryservice.model.Holiday;
+import uk.ac.sussex.deliveryservice.model.Vehicle;
+import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
+import uk.ac.sussex.deliveryservice.tasks.GetVehiclesTask;
+import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
 public class DriverDetailsActivity extends AppCompatActivity {
 
@@ -17,15 +30,27 @@ public class DriverDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_details);
-        DriverDetails details = new DriverDetails();
-        details.setEmail("Email@email.com");
-        Address address = new Address();
-        address.setCity("Brighton");
-        address.setLineOne("sdsdasd");
-        address.setPostCode("BN2 3QF");
-        details.setAddress(address);
+        Bundle b = getIntent().getExtras();
+        final String token = b.getString("token");
 
-        populateLayout(details);
+        AccessDriverDetailsTask task = new AccessDriverDetailsTask();
+        String[] params = new String[] {token};
+        String detailsJson = "";
+        try {
+            detailsJson = task.execute(params).get();
+        } catch (InterruptedException e) {
+            ErrorAction.showErrorDialogAndFinishActivity(this);
+        } catch (ExecutionException e) {
+            ErrorAction.showErrorDialogAndFinishActivity(this);
+        }
+
+        if (detailsJson.equals("Error")) {
+            ErrorAction.showErrorDialogAndFinishActivity(this);
+        } else {
+            Gson gSon=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+            DriverDetails details = gSon.fromJson(detailsJson, DriverDetails.class);
+            populateLayout(details);
+        }
     }
 
     private void populateLayout(DriverDetails details) {
@@ -33,7 +58,7 @@ public class DriverDetailsActivity extends AppCompatActivity {
         emailText.setText(details.getEmail());
 
         TextView addressText = (TextView) findViewById(R.id.address);
-        Address address = details.getAddress();
+        Address address = details.getDriverAddress();
         String lineTwoOfAddress = address.getLineTwo() == null ? "\n" : "\n" + address.getLineTwo() + "\n";
         String addressString = address.getLineOne() + lineTwoOfAddress + address.getCity() + "\n" + address.getPostCode();
         addressText.setText(addressString);
@@ -44,14 +69,14 @@ public class DriverDetailsActivity extends AppCompatActivity {
         } else {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-
+            SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
             for (Holiday hol : details.getHolidays()) {
                 TextView to = new TextView(this);
-                to.setText(hol.getTo());
+                to.setText(dt.format(hol.getTo()));
                 to.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
                 TextView from = new TextView(this);
-                from.setText(hol.getFrom());
+                from.setText(dt.format(hol.getFrom()));
                 from.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 tr.addView(from);
                 tr.addView(to);
@@ -60,4 +85,17 @@ public class DriverDetailsActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem)
+    {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+    }
+
 }

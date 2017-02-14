@@ -20,6 +20,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -29,6 +30,8 @@ import uk.ac.sussex.deliveryservice.adapters.CustomRouteListAdapter;
 import uk.ac.sussex.deliveryservice.model.Delivery;
 import uk.ac.sussex.deliveryservice.model.Route;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
+import uk.ac.sussex.deliveryservice.tasks.GetRoutesTask;
+import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
 public class RoutesActivity extends AppCompatActivity {
 
@@ -44,12 +47,9 @@ public class RoutesActivity extends AppCompatActivity {
         listView=(ListView)findViewById(R.id.list);
 
         Bundle b = getIntent().getExtras();
-        String key = "";
-        if(b != null) {
-            key = b.getString("key");
-        }
+        String token = b.getString("token");
 
-        dataModels = getRoutes(key);
+        dataModels = getRoutes(token);
         adapter= new CustomRouteListAdapter(dataModels,getApplicationContext());
 
         listView.setAdapter(adapter);
@@ -84,23 +84,53 @@ public class RoutesActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public boolean onOptionsItemSelected(MenuItem menuItem)
+    {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public ArrayList<RouteViewModel> getRoutes(String token) {
-        //GetRoutesTask task = new GetRoutesTask();
-        String json = "[\n" +
+        GetRoutesTask task = new GetRoutesTask();
+        String[] params = new String[] {token};
+        String json = null;
+        ArrayList<RouteViewModel> models = new ArrayList<>();
+        try {
+            json = task.execute(params).get();
+            if (json.equals("Error")) {
+                ErrorAction.showErrorDialogAndFinishActivity(this);
+            } else {
+                Gson gSon=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+                List<Route> routes = gSon.fromJson(json,  new TypeToken<ArrayList<Route>>() {}.getType());
+
+                Format formatter = new SimpleDateFormat("dd-MM-yyyy");
+                for (Route route : routes) {
+                    RouteViewModel model = new RouteViewModel();
+                    model.setDeliveryDate(formatter.format(route.getDeliveryDate()));
+                    model.setID(route.getID());
+                    model.setStatus(route.getRouteStatusString());
+                    model.setDeliveries((ArrayList< Delivery>) route.getDeliveries());
+                    model.setDeliverByDate(formatter.format(route.getDeliverBy()));
+                    model.setOverallDistance(route.getOverallDistance());
+                    model.setOverallTime(route.getOverallTimeRequired());
+                    model.setPickUpAddress(route.getPickUpAddress());
+                    model.setVehicle(route.getVehicle());
+                    models.add(model);
+                }
+            }
+        } catch (InterruptedException e) {
+            ErrorAction.showErrorDialogAndFinishActivity(this);
+        } catch (ExecutionException e) {
+            ErrorAction.showErrorDialogAndFinishActivity(this);
+        }
+
+        return models;
+        /*String json = "[\n" +
                 "  {\n" +
                 "    \"ID\":5,\n" +
                 "    \"DeliverBy\":\"2016-11-19T00:00:00\",\n" +
@@ -283,6 +313,7 @@ public class RoutesActivity extends AppCompatActivity {
                 "  }\n" +
                 "]";
 
+
         Gson gSon=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         List<Route> routes = gSon.fromJson(json,  new TypeToken<ArrayList<Route>>() {}.getType());
         ArrayList<RouteViewModel> models = new ArrayList<>();
@@ -301,7 +332,7 @@ public class RoutesActivity extends AppCompatActivity {
             models.add(model);
         }
         return models;
-
+*/
 
         /*try {
             String result = task.execute(token).get();

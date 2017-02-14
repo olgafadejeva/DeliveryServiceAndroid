@@ -30,24 +30,26 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
 
+    private LoginTask loginTask;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setupVariables();
+        loginTask = new LoginTask();
     }
 
     public void authenticateLogin(View view) throws Exception {
-        LoginTask task = new LoginTask();
         String[] params = new String[] {username.getText().toString(), password.getText().toString()};
-        String result = task.execute(params).get();
+        String result = loginTask.execute(params).get();
 
-        if (!result.equals("") || !result.equals("Fail")) {
-            Intent intent = new Intent(this, RoutesActivity.class);
+        if (!result.equals("") || !result.equals("Error")) {
+            Intent intent = new Intent(this, MainMenuActivity.class);
 
             Bundle b = new Bundle();
-            b.putString("key", result);
-            intent.putExtras(b); //Put your id to your next Intent
+            b.putString("token", result);
+            intent.putExtras(b);
             startActivity(intent);
         }
     }
@@ -57,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.email_sign_in_button);
     }
-
 }
 
 

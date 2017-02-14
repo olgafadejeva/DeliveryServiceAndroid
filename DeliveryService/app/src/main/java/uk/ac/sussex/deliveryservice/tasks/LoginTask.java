@@ -17,7 +17,7 @@ import okhttp3.Response;
 public class LoginTask extends AsyncTask<String, Void, String> {
 
     private static final String LOGIN_URL = "http://192.168.1.7:44302/connect/token";
-    public  final MediaType JSON
+    public  final MediaType MEDIA_TYPE
             = MediaType.parse("application/x-www-form-urlencoded");
     @Override
     protected String doInBackground(String... params) {
@@ -32,7 +32,8 @@ public class LoginTask extends AsyncTask<String, Void, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestBody body = RequestBody.create(JSON, "grant_type=password&username=rebecca@gmail.com&password=aaa123&scope=openid+email+name+profile+roles");
+        String bodyString = "grant_type=password&username=" + params[0] + "&password=" + params[1] + "&scope=openid+email+name+profile+roles";
+        RequestBody body = RequestBody.create(MEDIA_TYPE, bodyString);
         Request request =
                 new Request.Builder()
                         .url(LOGIN_URL)
@@ -51,19 +52,18 @@ public class LoginTask extends AsyncTask<String, Void, String> {
                     result = new JSONObject(response.body().string());
                     token = result.getString("access_token");
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    return "Error";
                 }
-                System.out.println(result);
                 return token;
             } else {
-                return "Fail";
+                return "Error";
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-        return "Fail";
+        return "Error";
     }
 
 

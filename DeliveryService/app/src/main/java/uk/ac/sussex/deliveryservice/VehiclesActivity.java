@@ -26,10 +26,14 @@ public class VehiclesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicles);
 
+        Bundle b = getIntent().getExtras();
+        final String token = b.getString("token");
         String vehiclesJson = null;
+
+        String[] params = new String[] {token};
         GetVehiclesTask task = new GetVehiclesTask();
         try {
-            vehiclesJson = task.execute().get();
+            vehiclesJson = task.execute(params).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

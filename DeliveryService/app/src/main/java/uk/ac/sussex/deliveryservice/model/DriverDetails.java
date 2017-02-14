@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class DriverDetails {
 
     private String email;
-    private Address address;
+    private Address driverAddress;
     private ArrayList<Holiday> holidays;
 
     public String getEmail() {
@@ -20,12 +20,12 @@ public class DriverDetails {
         this.email = email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getDriverAddress() {
+        return driverAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setDriverAddress(Address driverAddress) {
+        this.driverAddress = driverAddress;
     }
 
     public ArrayList<Holiday> getHolidays() {

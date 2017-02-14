@@ -17,10 +17,16 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_main_menu);
+        Bundle b = getIntent().getExtras();
+        final String token = b.getString("token");
+
+
         ArrayList<String> values = new ArrayList<>();
         values.add("My routes");
         values.add("My vehicles");
         values.add("My details");
+
+
 
         final MainMenuListAdapter adapter =  new MainMenuListAdapter(values, getApplicationContext());
         ListView listView=(ListView)findViewById(R.id.list);
@@ -31,16 +37,25 @@ public class MainMenuActivity extends AppCompatActivity {
                 String item = adapter.getItem(position);
                 if (item.contains("routes")) {
                     Intent intent = new Intent(MainMenuActivity.this, RoutesActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("token", token);
+                    intent.putExtras(b);
                     startActivity(intent);
                 }
 
                 if (item.contains("vehicles")) {
                     Intent intent = new Intent(MainMenuActivity.this, VehiclesActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("token", token);
+                    intent.putExtras(b);
                     startActivity(intent);
                 }
 
                 if (item.contains("details")) {
                     Intent intent = new Intent(MainMenuActivity.this, DriverDetailsActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("token", token);
+                    intent.putExtras(b);
                     startActivity(intent);
                 }
             }

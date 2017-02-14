@@ -1,27 +1,26 @@
 package uk.ac.sussex.deliveryservice.model;
 
-/**
- * Created by Olga on 08/02/2017.
- */
+import java.util.Date;
+
 public class Holiday {
-    private String from;
 
-    public String getTo() {
-        return to;
+    public Date getTo() {
+        return To;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setTo(Date to) {
+        To = to;
     }
 
-    public String getFrom() {
-        return from;
+    public Date getFrom() {
+        return From;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFrom(Date from) {
+        From = from;
     }
 
-    private String to;
+    private Date To;
+    private Date From;
 
 }
