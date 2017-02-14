@@ -10,10 +10,53 @@ public class Vehicle implements Serializable {
 
     public String RegistrationNumber;
 
+    public String MaxLoad;
+
+    public String Width;
+
+    public String Height;
+
     public Vehicle(String vehicleName, String registrationNumber) {
         VehicleName = vehicleName;
         RegistrationNumber = registrationNumber;
     }
+
+    public String getLength() {
+        return Length;
+    }
+
+    public void setLength(String length) {
+        Length = length;
+    }
+
+    public String getMaxLoad() {
+        return MaxLoad;
+    }
+
+    public void setMaxLoad(String maxLoad) {
+        MaxLoad = maxLoad;
+    }
+
+    public String getWidth() {
+        return Width;
+    }
+
+    public void setWidth(String width) {
+        Width = width;
+    }
+
+    public String getHeight() {
+        return Height;
+    }
+
+    public void setHeight(String height) {
+        Height = height;
+    }
+
+    public String Length;
+
+
+
 
     public String getVehicleName() {
         return VehicleName;

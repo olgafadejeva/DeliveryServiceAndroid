@@ -16,13 +16,13 @@ public class GetVehiclesTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(10000, TimeUnit.SECONDS)
+                .connectTimeout(10, TimeUnit.SECONDS)
                 .build();
 
         Request request =
                 new Request.Builder()
                         .url(VEHICLES_URL)
-                        .header("Authorization", "Bearer " + params[0])
+                       // .header("Authorization", "Bearer " + params[0])
                         .get()
                         .build();
 
@@ -33,13 +33,14 @@ public class GetVehiclesTask extends AsyncTask<String, Void, String> {
             if (response.isSuccessful()) {
                 return response.body().string();
             } else {
-                return "Fail";
+                return "Error";
             }
         } catch (IOException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
+            return "Error";
         }
 
 
-        return "Fail";
+       // return "Error";
     }
 }

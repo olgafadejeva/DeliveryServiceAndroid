@@ -29,6 +29,8 @@ public class VehiclesListAdapter extends ArrayAdapter<Vehicle> implements View.O
     private static class ViewHolder {
         TextView txtName;
         TextView regNumber;
+        TextView maxLoad;
+        TextView dimensions;
     }
 
     @Override
@@ -47,6 +49,8 @@ public class VehiclesListAdapter extends ArrayAdapter<Vehicle> implements View.O
             convertView = inflater.inflate(R.layout.vehicle_row_item, parent, false);
             viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
             viewHolder.regNumber = (TextView) convertView.findViewById(R.id.reg_num);
+            viewHolder.dimensions = (TextView) convertView.findViewById(R.id.dimensions);
+            viewHolder.maxLoad = (TextView) convertView.findViewById(R.id.max_load);
 
             result = convertView;
 
@@ -59,9 +63,12 @@ public class VehiclesListAdapter extends ArrayAdapter<Vehicle> implements View.O
         Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
         result.startAnimation(animation);
         lastPosition = position;
+        String dimensionsString = dataModel.getHeight() + "x" + dataModel.getLength() + "x" + dataModel.getWidth();
 
         viewHolder.txtName.setText(dataModel.getVehicleName());
         viewHolder.regNumber.setText(dataModel.getRegistrationNumber());
+        viewHolder.maxLoad.setText(dataModel.getMaxLoad() + "kg");
+        viewHolder.dimensions.setText(dimensionsString);
         return convertView;
     }
 
