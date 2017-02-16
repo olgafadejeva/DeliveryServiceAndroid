@@ -32,6 +32,7 @@ import uk.ac.sussex.deliveryservice.model.Route;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 import uk.ac.sussex.deliveryservice.tasks.GetRoutesTask;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
+import uk.ac.sussex.deliveryservice.util.RouteViewConverter;
 
 public class RoutesActivity extends AppCompatActivity {
 
@@ -105,23 +106,7 @@ public class RoutesActivity extends AppCompatActivity {
             if (json.equals("Error")) {
                 ErrorAction.showErrorDialogAndFinishActivity(this);
             } else {
-                Gson gSon=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-                List<Route> routes = gSon.fromJson(json,  new TypeToken<ArrayList<Route>>() {}.getType());
-
-                Format formatter = new SimpleDateFormat("dd-MM-yyyy");
-                for (Route route : routes) {
-                    RouteViewModel model = new RouteViewModel();
-                    model.setDeliveryDate(formatter.format(route.getDeliveryDate()));
-                    model.setID(route.getID());
-                    model.setStatus(route.getRouteStatusString());
-                    model.setDeliveries((ArrayList< Delivery>) route.getDeliveries());
-                    model.setDeliverByDate(formatter.format(route.getDeliverBy()));
-                    model.setOverallDistance(route.getOverallDistance());
-                    model.setOverallTime(route.getOverallTimeRequired());
-                    model.setPickUpAddress(route.getPickUpAddress());
-                    model.setVehicle(route.getVehicle());
-                    models.add(model);
-                }
+                models = RouteViewConverter.convertJsonToModels(json);
             }
         } catch (InterruptedException e) {
             ErrorAction.showErrorDialogAndFinishActivity(this);

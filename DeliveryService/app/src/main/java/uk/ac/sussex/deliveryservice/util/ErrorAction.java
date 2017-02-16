@@ -10,6 +10,7 @@ public class ErrorAction {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
         alertDialogBuilder.setTitle("Error occurred");
 
+
         alertDialogBuilder
                 .setMessage("Unknown error, please try again later ")
                 .setCancelable(false)
