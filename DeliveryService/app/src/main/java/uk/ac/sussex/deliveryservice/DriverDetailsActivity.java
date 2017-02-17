@@ -10,34 +10,40 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+
+import javax.inject.Inject;
 
 import uk.ac.sussex.deliveryservice.model.Address;
 import uk.ac.sussex.deliveryservice.model.DriverDetails;
 import uk.ac.sussex.deliveryservice.model.Holiday;
-import uk.ac.sussex.deliveryservice.model.Vehicle;
 import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
-import uk.ac.sussex.deliveryservice.tasks.GetVehiclesTask;
+import uk.ac.sussex.deliveryservice.config.DaggerApplication;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
 public class DriverDetailsActivity extends AppCompatActivity {
 
+    @Inject
+    AccessDriverDetailsTask accessDriverDetailsTask;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+       super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_details);
         Bundle b = getIntent().getExtras();
-        final String token = b.getString("token");
+        String tokenString = "";
+        if (b!=null) {
+            final String token = b.getString("token");
+            tokenString = token;
+        }
 
-        AccessDriverDetailsTask task = new AccessDriverDetailsTask();
-        String[] params = new String[] {token};
+        ((DaggerApplication) getApplication()).getOrCreateApplicationComponent().inject(this);
+        String[] params = new String[] {tokenString};
         String detailsJson = "";
         try {
-            detailsJson = task.execute(params).get();
+            detailsJson = accessDriverDetailsTask.execute(params).get();
         } catch (InterruptedException e) {
             ErrorAction.showErrorDialogAndFinishActivity(this);
         } catch (ExecutionException e) {

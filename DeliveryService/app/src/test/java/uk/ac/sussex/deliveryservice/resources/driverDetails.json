@@ -1,0 +1,19 @@
+{
+  "email": "rebecca@gmail.com",
+  "driverAddress": {
+    "ID": 9,
+    "LineOne": "25 Victor Street",
+    "LineTwo": null,
+    "City": "York",
+    "PostCode": "YO1 6HQ",
+    "Lat": 0,
+    "Lng": 0
+  },
+  "holidays": [
+    {
+      "ID": 1,
+      "From": "2016-11-30T00:00:00",
+      "To": "2016-12-04T00:00:00"
+    }
+  ]
+}

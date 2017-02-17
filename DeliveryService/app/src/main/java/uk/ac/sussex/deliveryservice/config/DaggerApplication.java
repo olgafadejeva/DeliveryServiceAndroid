@@ -1,7 +1,8 @@
-package uk.ac.sussex.deliveryservice.util;
+package uk.ac.sussex.deliveryservice.config;
 
-import android.app.Application;
 import android.support.multidex.MultiDexApplication;
+
+import uk.ac.sussex.deliveryservice.config.*;
 
 public class DaggerApplication extends MultiDexApplication {
     private static DaggerGraphComponent graph;
@@ -17,5 +18,14 @@ public class DaggerApplication extends MultiDexApplication {
     }
     public static void buildComponentGraph() {
         graph = DaggerGraphComponent.Initializer.init(instance);
+    }
+
+    public DaggerGraphComponent getOrCreateApplicationComponent() {
+        if (graph == null) {
+            return DaggerDaggerGraphComponent.builder()
+                    .mainModule(new MainModule(this))
+                    .build();
+        }
+        return graph;
     }
 }

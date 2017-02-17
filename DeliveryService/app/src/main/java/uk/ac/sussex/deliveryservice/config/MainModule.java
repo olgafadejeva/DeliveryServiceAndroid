@@ -1,4 +1,4 @@
-package uk.ac.sussex.deliveryservice.util;
+package uk.ac.sussex.deliveryservice.config;
 
 import android.app.Application;
 
@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
 import uk.ac.sussex.deliveryservice.tasks.LoginTask;
 
 @Module
@@ -24,5 +25,11 @@ public class MainModule {
     @Singleton
     LoginTask provideLoginTask() {
         return new LoginTask();
+    }
+
+    @Provides
+    @Singleton
+    AccessDriverDetailsTask provideAccessDriverDetailsTask() {
+        return new AccessDriverDetailsTask();
     }
 }
