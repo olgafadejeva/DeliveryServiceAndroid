@@ -34,7 +34,7 @@ import uk.ac.sussex.deliveryservice.tasks.GetRoutesTask;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
 import uk.ac.sussex.deliveryservice.util.RouteViewConverter;
 
-public class RoutesActivity extends AppCompatActivity {
+public class RoutesActivity extends DeliveryServiceActivity {
 
     ArrayList<RouteViewModel> dataModels;
     ListView listView;
@@ -48,7 +48,7 @@ public class RoutesActivity extends AppCompatActivity {
         listView=(ListView)findViewById(R.id.list);
 
         Bundle b = getIntent().getExtras();
-        String token = b.getString("token");
+        final String token = b.getString("token");
 
         dataModels = getRoutes(token);
         adapter= new CustomRouteListAdapter(dataModels,getApplicationContext());
@@ -60,12 +60,10 @@ public class RoutesActivity extends AppCompatActivity {
 
                 RouteViewModel dataModel= dataModels.get(position);
 
-                Snackbar.make(view, dataModel.getDeliveryDate()+"\n"+dataModel.getStatus()+" API: ", Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-
                 Intent intent = new Intent(RoutesActivity.this, RouteInformationActivity.class);
                 Bundle b = new Bundle();
                 b.putSerializable("route", dataModel);
+                b.putString("token", token);
                 intent.putExtras(b);
                 startActivity(intent);
 

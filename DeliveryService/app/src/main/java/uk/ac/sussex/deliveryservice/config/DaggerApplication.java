@@ -2,7 +2,6 @@ package uk.ac.sussex.deliveryservice.config;
 
 import android.support.multidex.MultiDexApplication;
 
-import uk.ac.sussex.deliveryservice.config.*;
 
 public class DaggerApplication extends MultiDexApplication {
     private static DaggerGraphComponent graph;

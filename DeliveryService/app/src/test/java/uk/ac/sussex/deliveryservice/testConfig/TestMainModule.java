@@ -1,15 +1,11 @@
 package uk.ac.sussex.deliveryservice.testConfig;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
+import uk.ac.sussex.deliveryservice.tasks.GetVehiclesTask;
 import uk.ac.sussex.deliveryservice.tasks.LoginTask;
 
 
@@ -19,6 +15,9 @@ public class TestMainModule  {
     public TestMainModule(TestDaggerApplication application) {
         app = application;
     }
+
+    AccessDriverDetailsTask accessDriverDetailsTask;
+    GetVehiclesTask getVehiclesTask;
 
 
     @Provides
@@ -30,21 +29,23 @@ public class TestMainModule  {
     @Provides
     @Singleton
     AccessDriverDetailsTask provideAccessDriverDetailsTask() {
-        return new AccessDriverDetailsSuccessTask();
+        return accessDriverDetailsTask;
     }
 
+    @Provides
+    @Singleton
+    GetVehiclesTask provideGetVehiclesTask() {
+        return getVehiclesTask;
+    }
+
+    public void setAccessDriverDetailsTask(AccessDriverDetailsTask task) {
+        this.accessDriverDetailsTask = task;
+    }
+
+
+    public void setGetVehiclesTask(GetVehiclesTask task) {
+        this.getVehiclesTask = task;
+    }
 }
 
 
-class AccessDriverDetailsSuccessTask extends AccessDriverDetailsTask{
-    @Override
-    protected String doInBackground(String... params) {
-        try {
-            String json = FileUtils.readFileToString(new File("D:\\DeliveryServiceAndroid\\DeliveryService\\app\\src\\test\\java\\uk\\ac\\sussex\\deliveryservice\\resources\\driverDetails.json"));
-            return json;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "Error";
-    }
-}

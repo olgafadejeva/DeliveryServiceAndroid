@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
+import uk.ac.sussex.deliveryservice.tasks.GetVehiclesTask;
 import uk.ac.sussex.deliveryservice.tasks.LoginTask;
 
 @Module
@@ -31,5 +32,11 @@ public class MainModule {
     @Singleton
     AccessDriverDetailsTask provideAccessDriverDetailsTask() {
         return new AccessDriverDetailsTask();
+    }
+
+    @Provides
+    @Singleton
+    GetVehiclesTask provideGetVehiclesTask() {
+        return new GetVehiclesTask();
     }
 }

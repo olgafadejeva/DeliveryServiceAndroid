@@ -14,12 +14,20 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import javax.inject.Inject;
+
 import uk.ac.sussex.deliveryservice.adapters.VehiclesListAdapter;
+import uk.ac.sussex.deliveryservice.config.DaggerApplication;
 import uk.ac.sussex.deliveryservice.model.Vehicle;
+import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
 import uk.ac.sussex.deliveryservice.tasks.GetVehiclesTask;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
-public class VehiclesActivity extends AppCompatActivity {
+public class VehiclesActivity extends DeliveryServiceActivity {
+
+
+    @Inject
+    GetVehiclesTask task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +35,16 @@ public class VehiclesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vehicles);
 
         Bundle b = getIntent().getExtras();
-        final String token = b.getString("token");
+        String tokenString = "";
+        if (b!=null) {
+            final String token = b.getString("token");
+            tokenString = token;
+        }
         String vehiclesJson = null;
 
-        String[] params = new String[] {token};
-        GetVehiclesTask task = new GetVehiclesTask();
+        String[] params = new String[] {tokenString};
+        ((DaggerApplication) getApplication()).getOrCreateApplicationComponent().inject(this);
+
         try {
             vehiclesJson = task.execute(params).get();
         } catch (InterruptedException e) {
@@ -47,9 +60,7 @@ public class VehiclesActivity extends AppCompatActivity {
             Gson gSon = new GsonBuilder().create();
             ArrayList<Vehicle> vehicles = gSon.fromJson(vehiclesJson, new TypeToken<ArrayList<Vehicle>>() {
             }.getType());
-            //ArrayList<Vehicle> vehicles = new ArrayList<>();
-        /*Vehicle c = new Vehicle("aa", "1234556");
-        vehicles.add(c);*/
+
             VehiclesListAdapter adapter = new VehiclesListAdapter(vehicles, getApplicationContext());
 
             ListView listView = (ListView) findViewById(R.id.list);

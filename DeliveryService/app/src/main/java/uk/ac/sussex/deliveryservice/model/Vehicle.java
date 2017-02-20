@@ -16,6 +16,8 @@ public class Vehicle implements Serializable {
 
     public String Height;
 
+    public String Length;
+
     public Vehicle(String vehicleName, String registrationNumber) {
         VehicleName = vehicleName;
         RegistrationNumber = registrationNumber;
@@ -52,10 +54,6 @@ public class Vehicle implements Serializable {
     public void setHeight(String height) {
         Height = height;
     }
-
-    public String Length;
-
-
 
 
     public String getVehicleName() {

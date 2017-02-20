@@ -20,12 +20,14 @@ import uk.ac.sussex.deliveryservice.adapters.CustomDeliveriesListAdapter;
 import uk.ac.sussex.deliveryservice.adapters.CustomRouteInformationListAdapter;
 import uk.ac.sussex.deliveryservice.model.Address;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
+import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
-public class RouteInformationActivity extends AppCompatActivity {
+public class RouteInformationActivity extends DeliveryServiceActivity {
 
     private ArrayList<RouteViewModel> dataModels;
     private RouteViewModel dataModel;
     private ListView listView;
+    String token;
     private static CustomRouteInformationListAdapter adapter;
 
 
@@ -36,18 +38,28 @@ public class RouteInformationActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         dataModel = (RouteViewModel)i.getSerializableExtra("route");
-        dataModels = new ArrayList<>();
-        dataModels.add(dataModel);
-        adapter= new CustomRouteInformationListAdapter(dataModels, getApplicationContext());
+        if (dataModel==null) {
+            ErrorAction.showErrorDialogAndFinishActivity(this);
+        } else {
+            dataModels = new ArrayList<>();
+            dataModels.add(dataModel);
+            token = i.getStringExtra("token");
+            if (token == null) {
+                ErrorAction.showErrorDialogAndFinishActivity(this);
+            } else {
+                adapter = new CustomRouteInformationListAdapter(dataModels, getApplicationContext());
 
-        listView=(ListView)findViewById(R.id.list);
-        listView.setAdapter(adapter);
+                listView = (ListView) findViewById(R.id.list);
+                listView.setAdapter(adapter);
+            }
+        }
     }
 
     public void seeDeliveries(View v)
     {
         Intent intent = new Intent(RouteInformationActivity.this, RouteDeliveriesActivity.class);
         Bundle b = new Bundle();
+        b.putString("token", token);
         b.putSerializable("deliveries", dataModel.getDeliveries());
         intent.putExtras(b);
         startActivity(intent);

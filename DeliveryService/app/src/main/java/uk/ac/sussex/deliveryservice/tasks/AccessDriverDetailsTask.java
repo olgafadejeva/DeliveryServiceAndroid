@@ -18,6 +18,7 @@ import okhttp3.Response;
 
 public class AccessDriverDetailsTask extends AsyncTask<String, Void, String> {
 
+
     private static final String BASE_URL = "http://192.168.1.7:44302/api/driver";
     @Override
     protected String doInBackground(String... params) {
@@ -46,5 +47,8 @@ public class AccessDriverDetailsTask extends AsyncTask<String, Void, String> {
         }
         return "Error";
     }
+
+    //for testing only
+    protected String testResult;
 
 }

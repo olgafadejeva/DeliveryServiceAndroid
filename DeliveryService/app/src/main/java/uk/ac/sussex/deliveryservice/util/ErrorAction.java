@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
+import uk.ac.sussex.deliveryservice.DeliveryServiceActivity;
+
 public class ErrorAction {
 
-    public static void showErrorDialogAndFinishActivity(final Activity activity) {
+    public static void showErrorDialogAndFinishActivity(final DeliveryServiceActivity activity) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
         alertDialogBuilder.setTitle("Error occurred");
 
@@ -22,6 +24,7 @@ public class ErrorAction {
                 });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
+        activity.setLastDialog(alertDialog);
         alertDialog.show();
     }
 }

@@ -64,19 +64,6 @@ public class MapRouteBoundaryActivity extends AppCompatActivity implements OnMap
         mMap.moveCamera(CameraUpdateFactory.newLatLng(depotLocation));
 
 
-        //MODIFY this to use real data
-        Delivery testDelivery = new Delivery();
-        Address address1 = new Address();
-        address1.setLat(51.49);
-        address1.setLng(0.14);
-        address1.setCity("London");
-        address1.setLineOne("Victoria St");
-        address1.setPostCode("SW1E 5ND");
-        Client client = new Client();
-        client.setAddress(address1);
-        testDelivery.setClient(client);
-        route.getDeliveries().add(testDelivery);
-
         ArrayList<Delivery> markersArray = route.getDeliveries();
 
 

@@ -39,4 +39,8 @@ public class GetVehiclesTask extends AsyncTask<String, Void, String> {
             return "Error";
         }
     }
+
+
+    //for testing only
+    protected String testResult;
 }

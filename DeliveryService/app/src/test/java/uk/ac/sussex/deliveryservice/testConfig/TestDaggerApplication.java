@@ -7,6 +7,7 @@ public class TestDaggerApplication extends DaggerApplication {
 
     private static TestDaggerGraphComponent testApplicationComponent;
     private static TestDaggerApplication instance;
+    private static TestMainModule applicationModule;
 
     @Override
     public void onCreate() {
@@ -15,30 +16,22 @@ public class TestDaggerApplication extends DaggerApplication {
         buildComponentGraph();
     }
 
-    public static DaggerGraphComponent component() {
-        return testApplicationComponent;
+    public void setModules(TestMainModule applicationModule) {
+        this.applicationModule = applicationModule;
     }
-    public static void buildComponentGraph() {
-        //testApplicationComponent = TestDaggerGraphComponent.Initializer.init(instance);
-    }
+
 
     @Override
     public TestDaggerGraphComponent getOrCreateApplicationComponent() {
         if (testApplicationComponent == null) {
+            if (applicationModule == null)
             return DaggerTestDaggerGraphComponent.builder().testMainModule(new TestMainModule(this))
                     .build();
+            else {
+                return DaggerTestDaggerGraphComponent.builder().testMainModule(applicationModule)
+                        .build();
+            }
         }
         return testApplicationComponent;
     }
-
-
-  /*  public TestDaggerGraphComponent getOrCreateApplicationTestComponent() {
-        if (testApplicationComponent == null) {
-            return DaggerTestDaggerGraphComponent.builder().testMainModule(new TestMainModule(this))
-                    .build();
-        }
-        return testApplicationComponent;
-    }*/
-
-
 }

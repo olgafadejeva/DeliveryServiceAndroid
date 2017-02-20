@@ -1,5 +1,6 @@
 package uk.ac.sussex.deliveryservice;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -23,7 +24,7 @@ import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
 import uk.ac.sussex.deliveryservice.config.DaggerApplication;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
-public class DriverDetailsActivity extends AppCompatActivity {
+public class DriverDetailsActivity extends DeliveryServiceActivity {
 
     @Inject
     AccessDriverDetailsTask accessDriverDetailsTask;
@@ -51,6 +52,8 @@ public class DriverDetailsActivity extends AppCompatActivity {
         }
 
         if (detailsJson.equals("Error")) {
+            TableLayout tl = (TableLayout) findViewById(R.id.holidays_table);
+            tl.setVisibility(View.INVISIBLE);
             ErrorAction.showErrorDialogAndFinishActivity(this);
         } else {
             Gson gSon=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
@@ -104,4 +107,8 @@ public class DriverDetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void setLastDialog(AlertDialog dialog) {
+        this.lastDialog = dialog;
+    }
 }

@@ -1,0 +1,16 @@
+[{
+  "VehicleName": "Audi",
+  "RegistrationNumber": "123456",
+  "MaxLoad": "500",
+  "Width": "4",
+  "Height": "4",
+  "Length": "5"
+},
+{
+"VehicleName": "BMW",
+"RegistrationNumber": "7891011",
+"MaxLoad": "500",
+"Width": "4",
+"Height": "4",
+"Length": "5"
+}]

@@ -18,7 +18,10 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(icicle);
         setContentView(R.layout.activity_main_menu);
         Bundle b = getIntent().getExtras();
-        final String token = b.getString("token");
+        String tokenString = "";
+        if (b!=null) {
+            tokenString = b.getString("token");
+        }
 
 
         ArrayList<String> values = new ArrayList<>();
@@ -32,13 +35,14 @@ public class MainMenuActivity extends AppCompatActivity {
         ListView listView=(ListView)findViewById(R.id.list);
         listView.setAdapter(adapter);
 
+        final String finalTokenString = tokenString;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 String item = adapter.getItem(position);
                 if (item.contains("routes")) {
                     Intent intent = new Intent(MainMenuActivity.this, RoutesActivity.class);
                     Bundle b = new Bundle();
-                    b.putString("token", token);
+                    b.putString("token", finalTokenString);
                     intent.putExtras(b);
                     startActivity(intent);
                 }
@@ -46,7 +50,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 if (item.contains("vehicles")) {
                     Intent intent = new Intent(MainMenuActivity.this, VehiclesActivity.class);
                     Bundle b = new Bundle();
-                    b.putString("token", token);
+                    b.putString("token", finalTokenString);
                     intent.putExtras(b);
                     startActivity(intent);
                 }
@@ -54,7 +58,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 if (item.contains("details")) {
                     Intent intent = new Intent(MainMenuActivity.this, DriverDetailsActivity.class);
                     Bundle b = new Bundle();
-                    b.putString("token", token);
+                    b.putString("token", finalTokenString);
                     intent.putExtras(b);
                     startActivity(intent);
                 }

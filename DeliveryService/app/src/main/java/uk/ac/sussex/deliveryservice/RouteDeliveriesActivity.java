@@ -34,9 +34,9 @@ public class RouteDeliveriesActivity extends AppCompatActivity {
         if(bundle != null) {
             token = bundle.getString("token");
         }
-        //dataModels = (ArrayList<Delivery>) i.getSerializableExtra("dataModels");
+        dataModels = (ArrayList<Delivery>) intent.getSerializableExtra("deliveries");
 
-        String json = "[\n" +
+        /*String json = "[\n" +
                 "  {\n" +
                 "    \"StatusString\": \"New\",\n" +
                 "    \"ID\": 5,\n" +
@@ -105,15 +105,20 @@ public class RouteDeliveriesActivity extends AppCompatActivity {
 
         Gson gSon=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         dataModels = gSon.fromJson(json,  new TypeToken<ArrayList<Delivery>>() {}.getType());
-        //display dataModels in a list
+        /*
 
+         */
+
+        //display dataModels in a list
         adapter= new CustomDeliveriesListAdapter(dataModels, this);
         adapter.setToken(token);
         adapter.setActivity(this);
 
         listView=(ListView)findViewById(R.id.list);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        //TODO:not sure what this is - remove?
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -126,7 +131,7 @@ public class RouteDeliveriesActivity extends AppCompatActivity {
                 //startActivity(intent);
 
             }
-        });
+        });*/
 
     }
 
