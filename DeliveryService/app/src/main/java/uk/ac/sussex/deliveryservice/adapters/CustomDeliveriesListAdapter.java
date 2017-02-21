@@ -64,11 +64,12 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
         Button statusUpdateDelivered;
     }
 
-    public CustomDeliveriesListAdapter(ArrayList<Delivery> data, RouteDeliveriesActivity activity) {
+    public CustomDeliveriesListAdapter(ArrayList<Delivery> data, RouteDeliveriesActivity activity, String token) {
         super(activity.getApplicationContext(), R.layout.delivery_row_item, data);
         this.dataSet = data;
         this.mContext = activity.getApplicationContext();
         this.activity = activity;
+        this.token = token;
 
     }
 
@@ -144,8 +145,8 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
                 String status = "Picked Up";
                 UpdateStatusTask task = new UpdateStatusTask();
                 try {
-                    String result = task.execute("token", dataModel.getID() + "", "PickedUpByDriver").get();
-                    if (result.equals("Fail")) {
+                    String result = task.execute(token, dataModel.getID() + "", "PickedUpByDriver").get();
+                    if (result.equals("Error")) {
                         createAlertDialog(UNABLE_TO_CHANGE_STATUS_MASSAGE + status);
                     } else {
                         createAlertDialog(SUCCESSFULL_UPDATE_STATUS_MESSAGE + status);
@@ -167,8 +168,8 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
                 String status = "In Transit";
                 UpdateStatusTask task = new UpdateStatusTask();
                 try {
-                    String result = task.execute("token", dataModel.getID() + "", "InTransit").get();
-                    if (result.equals("Fail")) {
+                    String result = task.execute(token, dataModel.getID() + "", "InTransit").get();
+                    if (result.equals("Error")) {
                         createAlertDialog(UNABLE_TO_CHANGE_STATUS_MASSAGE + status);
                     } else {
                         createAlertDialog(SUCCESSFULL_UPDATE_STATUS_MESSAGE + status);
@@ -191,8 +192,8 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
                 String status = "Delivered";
                 UpdateStatusTask task = new UpdateStatusTask();
                 try {
-                    String result = task.execute("token", dataModel.getID() + "", "Delivered").get();
-                    if (result.equals("Fail")) {
+                    String result = task.execute(token, dataModel.getID() + "", "Delivered").get();
+                    if (result.equals("Error")) {
                         createAlertDialog(UNABLE_TO_CHANGE_STATUS_MASSAGE + status);
                     } else {
                         createAlertDialog(SUCCESSFULL_UPDATE_STATUS_MESSAGE + status);
@@ -215,8 +216,8 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
                 String status = "Failed Delivery";
                 UpdateStatusTask task = new UpdateStatusTask();
                 try {
-                    String result = task.execute("token", dataModel.getID() + "", "FailedDelivery").get();
-                    if (result.equals("Fail")) {
+                    String result = task.execute(token, dataModel.getID() + "", "FailedDelivery").get();
+                    if (result.equals("Error")) {
                         createAlertDialog(UNABLE_TO_CHANGE_STATUS_MASSAGE + status);
                     } else {
                         createAlertDialog(SUCCESSFULL_UPDATE_STATUS_MESSAGE + status);
@@ -235,11 +236,6 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
 
             @Override
             public void onClick(View v) {
-               /*Uri gmmIntentUri = Uri.parse("google.geo:cbll=46.414382,10.013988?z=4");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                mapIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                v.getContext().startActivity(mapIntent);*/
 
                 double lat = dataModel.getClient().getAddress().getLat();
                 double lng = dataModel.getClient().getAddress().getLng();

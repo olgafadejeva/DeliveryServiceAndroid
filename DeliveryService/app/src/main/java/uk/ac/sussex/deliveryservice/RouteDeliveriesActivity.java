@@ -110,8 +110,8 @@ public class RouteDeliveriesActivity extends AppCompatActivity {
          */
 
         //display dataModels in a list
-        adapter= new CustomDeliveriesListAdapter(dataModels, this);
-        adapter.setToken(token);
+        adapter= new CustomDeliveriesListAdapter(dataModels, this, token);
+        //adapter.setToken(token);
         adapter.setActivity(this);
 
         listView=(ListView)findViewById(R.id.list);

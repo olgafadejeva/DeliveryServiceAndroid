@@ -34,7 +34,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void authenticateLogin(View view) throws Exception {
         String[] params = new String[] {username.getText().toString(), password.getText().toString()};
+
         String result = loginTask.execute(params).get();
+
 
         if ( !result.equals("Error") && !result.equals("")) {
             Intent intent = new Intent(this, MainMenuActivity.class);
@@ -45,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             errorMessage.setText("Error occurred, please try again later");
+            loginTask = new LoginTask(); //create a new Task so that it can be executed again
         }
     }
 
