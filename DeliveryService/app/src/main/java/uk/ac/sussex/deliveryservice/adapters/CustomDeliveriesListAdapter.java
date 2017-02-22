@@ -40,11 +40,10 @@ import uk.ac.sussex.deliveryservice.model.Address;
 import uk.ac.sussex.deliveryservice.model.Delivery;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 import uk.ac.sussex.deliveryservice.tasks.UpdateStatusTask;
+import uk.ac.sussex.deliveryservice.util.DeliveryStatusUpdateHelper;
 
 public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implements View.OnClickListener {
 
-    private static final String UNABLE_TO_CHANGE_STATUS_MASSAGE = "Unable to change status to ";
-    private static final String SUCCESSFULL_UPDATE_STATUS_MESSAGE = "Updated status to ";
     private ArrayList<Delivery> dataSet;
     Context mContext;
     private String token;
@@ -142,22 +141,8 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
 
             @Override
             public void onClick(View v) {
-                String status = "Picked Up";
-                UpdateStatusTask task = new UpdateStatusTask();
-                try {
-                    String result = task.execute(token, dataModel.getID() + "", "PickedUpByDriver").get();
-                    if (result.equals("Error")) {
-                        createAlertDialog(UNABLE_TO_CHANGE_STATUS_MASSAGE + status);
-                    } else {
-                        createAlertDialog(SUCCESSFULL_UPDATE_STATUS_MESSAGE + status);
-                        dataModel.setStatusString(status);
-                        viewHolder.statusField.setText(dataModel.getStatusString());
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+                DeliveryStatusUpdateHelper.updateDeliveryStatus("PickedUpByDriver", "Picked Up", token, dataModel, activity, new UpdateStatusTask());
+                viewHolder.statusField.setText(dataModel.getStatusString());
             }
         });
 
@@ -165,23 +150,8 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
 
             @Override
             public void onClick(View v) {
-                String status = "In Transit";
-                UpdateStatusTask task = new UpdateStatusTask();
-                try {
-                    String result = task.execute(token, dataModel.getID() + "", "InTransit").get();
-                    if (result.equals("Error")) {
-                        createAlertDialog(UNABLE_TO_CHANGE_STATUS_MASSAGE + status);
-                    } else {
-                        createAlertDialog(SUCCESSFULL_UPDATE_STATUS_MESSAGE + status);
-                        dataModel.setStatusString(status);
-                        viewHolder.statusField.setText(dataModel.getStatusString());
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-
+                DeliveryStatusUpdateHelper.updateDeliveryStatus("InTransit", "In Transit", token, dataModel, activity, new UpdateStatusTask());
+                viewHolder.statusField.setText(dataModel.getStatusString());
             }
         });
 
@@ -189,22 +159,8 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
 
             @Override
             public void onClick(View v) {
-                String status = "Delivered";
-                UpdateStatusTask task = new UpdateStatusTask();
-                try {
-                    String result = task.execute(token, dataModel.getID() + "", "Delivered").get();
-                    if (result.equals("Error")) {
-                        createAlertDialog(UNABLE_TO_CHANGE_STATUS_MASSAGE + status);
-                    } else {
-                        createAlertDialog(SUCCESSFULL_UPDATE_STATUS_MESSAGE + status);
-                        dataModel.setStatusString(status);
-                        viewHolder.statusField.setText(dataModel.getStatusString());
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+                DeliveryStatusUpdateHelper.updateDeliveryStatus("Delivered", "Delivered",  token, dataModel, activity, new UpdateStatusTask());
+                viewHolder.statusField.setText(dataModel.getStatusString());
 
             }
         });
@@ -213,23 +169,10 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
 
             @Override
             public void onClick(View v) {
-                String status = "Failed Delivery";
-                UpdateStatusTask task = new UpdateStatusTask();
-                try {
-                    String result = task.execute(token, dataModel.getID() + "", "FailedDelivery").get();
-                    if (result.equals("Error")) {
-                        createAlertDialog(UNABLE_TO_CHANGE_STATUS_MASSAGE + status);
-                    } else {
-                        createAlertDialog(SUCCESSFULL_UPDATE_STATUS_MESSAGE + status);
-                        dataModel.setStatusString(status);
-                        viewHolder.statusField.setText(dataModel.getStatusString());
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+                DeliveryStatusUpdateHelper.updateDeliveryStatus("FailedDelivery", "Failed Delivery", token, dataModel, activity, new UpdateStatusTask());
+                viewHolder.statusField.setText(dataModel.getStatusString());
             }
+
         });
 
         viewHolder.mapView.setOnClickListener(new View.OnClickListener() {
@@ -254,27 +197,6 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
         return convertView;
     }
 
-    private void createAlertDialog(String message) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
-        // set title
-        alertDialogBuilder.setTitle("Status update message");
-
-        // set dialog message
-        alertDialogBuilder
-                .setMessage(message)
-                .setCancelable(false)
-                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
-        alertDialog.show();
-    }
 
 
     public void setToken(String token) {
