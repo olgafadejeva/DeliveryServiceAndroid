@@ -12,9 +12,6 @@ import java.util.ArrayList;
 
 import uk.ac.sussex.deliveryservice.R;
 
-/**
- * Created by Olga on 08/02/2017.
- */
 public class MainMenuListAdapter extends ArrayAdapter<String> {
 
     private ArrayList<String> dataSet;
