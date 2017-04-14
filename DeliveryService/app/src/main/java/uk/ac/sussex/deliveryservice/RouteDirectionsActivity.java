@@ -23,6 +23,9 @@ import java.util.ArrayList;
 
 import uk.ac.sussex.deliveryservice.model.DrivingInstruction;
 
+/*
+Renders route travel instructions
+ */
 public class RouteDirectionsActivity extends AppCompatActivity {
 
     private DirectionsPageAdapter mDirectionsPageAdapter;

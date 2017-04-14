@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import uk.ac.sussex.deliveryservice.adapters.CustomDeliveriesListAdapter;
 import uk.ac.sussex.deliveryservice.model.Delivery;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
-
+/*
+Generates a screen with deliveries information
+ */
 public class RouteDeliveriesActivity extends AppCompatActivity {
 
     private ArrayList<Delivery> dataModels;

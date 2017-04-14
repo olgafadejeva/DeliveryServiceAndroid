@@ -3,6 +3,9 @@ package uk.ac.sussex.deliveryservice.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/*
+Maps to  the DeliveryStatus class from the web app
+ */
 @SuppressWarnings("serial")
 public class DeliveryStatus implements Serializable{
     public int ID;

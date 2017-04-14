@@ -3,6 +3,9 @@ package uk.ac.sussex.deliveryservice.model;
 
 import java.io.Serializable;
 
+/*
+Maps to the Address class from the Web app
+ */
 @SuppressWarnings("serial")
 public class Address implements Serializable {
 

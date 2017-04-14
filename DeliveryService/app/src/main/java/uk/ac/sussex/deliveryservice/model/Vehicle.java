@@ -3,6 +3,9 @@ package uk.ac.sussex.deliveryservice.model;
 
 import java.io.Serializable;
 
+/*
+Maps to the vehicle class from the main app
+ */
 @SuppressWarnings("serial")
 public class Vehicle implements Serializable {
 

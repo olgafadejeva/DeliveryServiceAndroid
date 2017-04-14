@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
+/*
+Represents a driving instruction model
+ */
 public class DrivingInstruction implements Serializable{
 
     public ArrayList<String> getDirections() {

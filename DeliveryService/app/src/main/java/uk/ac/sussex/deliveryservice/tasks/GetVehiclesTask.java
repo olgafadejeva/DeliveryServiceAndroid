@@ -10,6 +10,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
+/*
+Retrieves all driver's vehicles from the web app by calling the appropriate API
+ */
 public class GetVehiclesTask extends AsyncTask<String, Void, String> {
 
     private static final String VEHICLES_URL = "http://192.168.1.7:44302/api/vehicles";

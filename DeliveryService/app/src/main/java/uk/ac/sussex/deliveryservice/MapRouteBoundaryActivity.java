@@ -34,6 +34,9 @@ import uk.ac.sussex.deliveryservice.model.PickUpAddress;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 import uk.ac.sussex.deliveryservice.util.JSONParser;
 
+/*
+Draws a route on the map, idea taken from: http://stackoverflow.com/questions/17425499/how-to-draw-interactive-polyline-on-route-google-maps-v2-android
+ */
 public class MapRouteBoundaryActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -140,7 +143,6 @@ public class MapRouteBoundaryActivity extends AppCompatActivity implements OnMap
     public void drawPath(String result) {
 
         try {
-            //Tranform the string into a json object
             final JSONObject json = new JSONObject(result);
             JSONArray routeArray = json.getJSONArray("routes");
             JSONObject routes = routeArray.getJSONObject(0);
@@ -162,7 +164,7 @@ public class MapRouteBoundaryActivity extends AppCompatActivity implements OnMap
                 instructions.add(instruction);
             }
 
-           // legs.getJSONObject(0).getJSONArray("steps").getJSONObject(0).get("html_instructions");
+           legs.getJSONObject(0).getJSONArray("steps").getJSONObject(0).get("html_instructions");
 
 
             //routes > legs > steps > html_nstructions

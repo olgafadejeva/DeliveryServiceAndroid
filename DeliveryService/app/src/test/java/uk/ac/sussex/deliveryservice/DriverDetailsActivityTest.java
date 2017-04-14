@@ -27,6 +27,9 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 
+/*
+Test class for a DriverDetailsActivity. Tests whether the error dialog is shown when  a task fails
+ */
 @RunWith(RobolectricTestRunner.class)
 @Config(constants =BuildConfig.class,  sdk = 22, application =TestDaggerApplication.class)
 public class DriverDetailsActivityTest {

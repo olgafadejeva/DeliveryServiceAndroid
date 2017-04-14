@@ -22,6 +22,9 @@ import uk.ac.sussex.deliveryservice.model.Address;
 import uk.ac.sussex.deliveryservice.model.PickUpAddress;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 
+/*
+Generates route information page
+ */
 public class CustomRouteInformationListAdapter extends ArrayAdapter<RouteViewModel> implements View.OnClickListener{
 
     private ArrayList<RouteViewModel> dataSet;

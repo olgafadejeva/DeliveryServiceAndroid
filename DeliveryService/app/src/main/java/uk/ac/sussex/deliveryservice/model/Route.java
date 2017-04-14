@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/*
+Maps to the Route class from the web app
+ */
 @SuppressWarnings("serial")
 public class Route implements Serializable{
     private int ID;

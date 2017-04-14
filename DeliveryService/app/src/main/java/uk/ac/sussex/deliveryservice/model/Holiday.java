@@ -2,6 +2,9 @@ package uk.ac.sussex.deliveryservice.model;
 
 import java.util.Date;
 
+/*
+Maps to the DriverHoliday class from the web app
+ */
 public class Holiday {
 
     public Date getTo() {

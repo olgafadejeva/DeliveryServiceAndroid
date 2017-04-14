@@ -16,6 +16,9 @@ import uk.ac.sussex.deliveryservice.model.Address;
 import uk.ac.sussex.deliveryservice.model.Delivery;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 
+/*
+This activity starts the turn-by-turn navigation to clients and a depot address
+ */
 public class NavigationActivity extends AppCompatActivity {
 
     private RouteViewModel model;

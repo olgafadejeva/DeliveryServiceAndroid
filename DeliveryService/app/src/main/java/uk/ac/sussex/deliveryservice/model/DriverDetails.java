@@ -2,10 +2,9 @@ package uk.ac.sussex.deliveryservice.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by Olga on 08/02/2017.
+/*
+Maps to the DriverDetails class from the web app
  */
-
 public class DriverDetails {
 
     private String email;

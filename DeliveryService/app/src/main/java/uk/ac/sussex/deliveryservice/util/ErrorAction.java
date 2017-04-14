@@ -1,11 +1,13 @@
 package uk.ac.sussex.deliveryservice.util;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
 import uk.ac.sussex.deliveryservice.DeliveryServiceActivity;
 
+/*
+Creates a dialog shown when some kind of error occurs
+ */
 public class ErrorAction {
 
     public static void showErrorDialogAndFinishActivity(final DeliveryServiceActivity activity) {

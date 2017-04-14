@@ -14,6 +14,9 @@ import uk.ac.sussex.deliveryservice.model.Delivery;
 import uk.ac.sussex.deliveryservice.model.Route;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 
+/*
+Converts a route object into the RouteViewModel
+ */
 public class RouteViewConverter {
     public static ArrayList<RouteViewModel> convertJsonToModels(String json) {
         Gson gSon=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();

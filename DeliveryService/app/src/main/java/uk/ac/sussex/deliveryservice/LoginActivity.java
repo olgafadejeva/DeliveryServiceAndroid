@@ -13,6 +13,9 @@ import javax.inject.Inject;
 import uk.ac.sussex.deliveryservice.tasks.LoginTask;
 import uk.ac.sussex.deliveryservice.config.DaggerApplication;
 
+/*
+Creates the login screen that a user sees once the app is run
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText username;

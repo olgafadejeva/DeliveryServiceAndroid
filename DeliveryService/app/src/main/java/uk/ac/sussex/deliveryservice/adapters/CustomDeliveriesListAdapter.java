@@ -42,6 +42,9 @@ import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 import uk.ac.sussex.deliveryservice.tasks.UpdateStatusTask;
 import uk.ac.sussex.deliveryservice.util.DeliveryStatusUpdateHelper;
 
+/*
+This class is responsible for the generation of the deliveries list
+ */
 public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implements View.OnClickListener {
 
     private ArrayList<Delivery> dataSet;
@@ -196,8 +199,6 @@ public class CustomDeliveriesListAdapter extends ArrayAdapter<Delivery> implemen
 
         return convertView;
     }
-
-
 
     public void setToken(String token) {
         this.token = token;

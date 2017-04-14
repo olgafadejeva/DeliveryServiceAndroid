@@ -34,6 +34,9 @@ import uk.ac.sussex.deliveryservice.tasks.GetRoutesTask;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
 import uk.ac.sussex.deliveryservice.util.RouteViewConverter;
 
+/*
+Shows all routes in a clickable list, accessible from the main app menu
+ */
 public class RoutesActivity extends DeliveryServiceActivity {
 
     ArrayList<RouteViewModel> dataModels;

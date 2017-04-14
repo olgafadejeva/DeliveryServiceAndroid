@@ -14,6 +14,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/*
+Obtains the access token from the web app
+ */
 public class LoginTask extends AsyncTask<String, Void, String> {
 
     private static final String LOGIN_URL = "http://192.168.1.7:44302/connect/token";

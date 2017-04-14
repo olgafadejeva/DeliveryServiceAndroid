@@ -13,6 +13,9 @@ import uk.ac.sussex.deliveryservice.testConfig.TestDaggerApplication;
 
 import static org.junit.Assert.assertEquals;
 
+/*
+Makes sure the menu activity is correctly populated
+ */
 @RunWith(RobolectricTestRunner.class)
 @Config(constants =BuildConfig.class,  sdk = 22, application =TestDaggerApplication.class)
 public class MainMenuActivityTest {

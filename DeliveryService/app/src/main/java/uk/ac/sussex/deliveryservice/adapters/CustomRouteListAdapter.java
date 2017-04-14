@@ -20,10 +20,11 @@ import java.util.ArrayList;
 import uk.ac.sussex.deliveryservice.R;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 
-
+/*
+Puts all routes in a list
+ */
 public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> implements View.OnClickListener {
 
-    private ArrayList<RouteViewModel> dataSet;
     Context mContext;
     private int lastPosition = -1;
 
@@ -36,15 +37,12 @@ public class CustomRouteListAdapter extends ArrayAdapter<RouteViewModel> impleme
 
     public CustomRouteListAdapter(ArrayList<RouteViewModel> data, Context context) {
         super(context, R.layout.route_row_item, data);
-        this.dataSet = data;
         this.mContext = context;
 
     }
 
-
     @Override
     public void onClick(View v) {
-
         int position = (Integer) v.getTag();
         Object object = getItem(position);
         RouteViewModel dataModel = (RouteViewModel) object;

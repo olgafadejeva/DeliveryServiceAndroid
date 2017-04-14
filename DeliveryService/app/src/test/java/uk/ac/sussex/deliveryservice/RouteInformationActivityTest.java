@@ -20,6 +20,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+/*
+Test class for a RouteInformationAcrivity . Tests whether the error dialog when there is no token present in the request
+ */
 @RunWith(RobolectricTestRunner.class)
 @Config(constants =BuildConfig.class,  sdk = 22, application =TestDaggerApplication.class)
 public class RouteInformationActivityTest {

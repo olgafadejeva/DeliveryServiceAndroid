@@ -16,6 +16,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/*
+Retrieves driver details object by calling the appropriate API
+ */
 public class AccessDriverDetailsTask extends AsyncTask<String, Void, String> {
 
 

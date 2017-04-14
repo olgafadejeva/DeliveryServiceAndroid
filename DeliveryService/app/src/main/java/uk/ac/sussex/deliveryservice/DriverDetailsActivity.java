@@ -24,6 +24,9 @@ import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
 import uk.ac.sussex.deliveryservice.config.DaggerApplication;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
+/*
+Activty showing driver's details, accessible from the main menu
+ */
 public class DriverDetailsActivity extends DeliveryServiceActivity {
 
     @Inject

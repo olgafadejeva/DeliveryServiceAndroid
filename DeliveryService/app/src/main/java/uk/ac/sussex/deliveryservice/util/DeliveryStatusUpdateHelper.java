@@ -10,6 +10,9 @@ import uk.ac.sussex.deliveryservice.RouteDeliveriesActivity;
 import uk.ac.sussex.deliveryservice.model.Delivery;
 import uk.ac.sussex.deliveryservice.tasks.UpdateStatusTask;
 
+/*
+Calls the Task to update delivery status and generates an update dialog based on the results
+ */
 public class DeliveryStatusUpdateHelper {
 
 

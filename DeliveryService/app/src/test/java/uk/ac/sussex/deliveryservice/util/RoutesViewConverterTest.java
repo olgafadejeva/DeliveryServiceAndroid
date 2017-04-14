@@ -16,6 +16,9 @@ import static junit.framework.Assert.assertNotNull;
 
 public class RoutesViewConverterTest {
 
+    /*
+    Tests convertion of JSON into java ojects
+     */
     @Test
     public void testConversionFromJson() throws IOException {
         String json = FileUtils.readFileToString(new File("D:\\DeliveryServiceAndroid\\DeliveryService\\app\\src\\test\\java\\uk\\ac\\sussex\\deliveryservice\\resources\\routes.json"));

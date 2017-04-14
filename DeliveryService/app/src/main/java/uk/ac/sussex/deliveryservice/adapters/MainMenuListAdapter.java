@@ -11,19 +11,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import uk.ac.sussex.deliveryservice.R;
-
-/**
- * Created by Olga on 08/02/2017.
+/*
+This class generates the items in the main application menu
  */
 public class MainMenuListAdapter extends ArrayAdapter<String> {
 
-    private ArrayList<String> dataSet;
-    private Context mContext;
-
     public MainMenuListAdapter(ArrayList<String> data, Context context) {
         super(context, R.layout.main_menu_item, data);
-        this.dataSet = data;
-        this.mContext = context;
     }
 
     private static class ViewHolder {

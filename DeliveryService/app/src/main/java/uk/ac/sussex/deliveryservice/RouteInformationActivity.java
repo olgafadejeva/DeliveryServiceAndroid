@@ -22,6 +22,9 @@ import uk.ac.sussex.deliveryservice.model.Address;
 import uk.ac.sussex.deliveryservice.model.RouteViewModel;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
+/*
+Shows detailed information about the selected route
+ */
 public class RouteInformationActivity extends DeliveryServiceActivity {
 
     private ArrayList<RouteViewModel> dataModels;

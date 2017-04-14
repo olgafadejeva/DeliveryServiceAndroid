@@ -1,8 +1,5 @@
 package uk.ac.sussex.deliveryservice;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -19,10 +16,12 @@ import javax.inject.Inject;
 import uk.ac.sussex.deliveryservice.adapters.VehiclesListAdapter;
 import uk.ac.sussex.deliveryservice.config.DaggerApplication;
 import uk.ac.sussex.deliveryservice.model.Vehicle;
-import uk.ac.sussex.deliveryservice.tasks.AccessDriverDetailsTask;
 import uk.ac.sussex.deliveryservice.tasks.GetVehiclesTask;
 import uk.ac.sussex.deliveryservice.util.ErrorAction;
 
+/*
+Generates a list with all driver's vehicles
+ */
 public class VehiclesActivity extends DeliveryServiceActivity {
 
 

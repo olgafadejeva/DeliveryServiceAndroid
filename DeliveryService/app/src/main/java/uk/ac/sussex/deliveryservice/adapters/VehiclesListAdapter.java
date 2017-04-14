@@ -14,15 +14,16 @@ import java.util.ArrayList;
 import uk.ac.sussex.deliveryservice.R;
 import uk.ac.sussex.deliveryservice.model.Vehicle;
 
+/*
+Represents vehicles in a list
+ */
 public class VehiclesListAdapter extends ArrayAdapter<Vehicle> implements View.OnClickListener  {
 
-    private ArrayList<Vehicle> dataSet;
     private Context mContext;
     private int lastPosition = -1;
 
     public VehiclesListAdapter(ArrayList<Vehicle> data, Context context) {
         super(context, R.layout.vehicle_row_item, data);
-        this.dataSet = data;
         this.mContext = context;
     }
 

@@ -3,6 +3,9 @@ package uk.ac.sussex.deliveryservice.model;
 
 import java.io.Serializable;
 
+/*
+Maps to the client class from the web app
+ */
 @SuppressWarnings("serial")
 public class Client implements Serializable {
 

@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 import uk.ac.sussex.deliveryservice.adapters.MainMenuListAdapter;
 
+/*
+Generates the main menu accessed when a user has been successfully logged in
+ */
 public class MainMenuActivity extends AppCompatActivity {
 
     @Override
